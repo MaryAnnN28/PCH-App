@@ -8,6 +8,7 @@ import { Divider, Grid, Stack, Typography, useMediaQuery } from '@material-ui/co
 // project imports
 import AuthWrapper1 from '../AuthWrapper1';
 import Logo from 'ui-component/Logo';
+import PCHLogo from 'assets/images/PCH_logo_only.png';
 import AuthCardWrapper from '../AuthCardWrapper';
 import FirebaseLogin from './FirebaseLogin';
 import AuthFooter from 'ui-component/cards/AuthFooter';
@@ -28,7 +29,8 @@ const Login = () => {
                                 <Grid container spacing={2} alignItems="center" justifyContent="center">
                                     <Grid item sx={{ mb: 3 }}>
                                         <RouterLink to="#">
-                                            <Logo />
+                                            {/* <Logo /> */}
+                                            <img src={PCHLogo} alt="pch logo" width="100px" />
                                         </RouterLink>
                                     </Grid>
                                     <Grid item xs={12}>
