@@ -19,26 +19,27 @@ const administration = {
         {
             id: 'account',
             title: <FormattedMessage id="Account" />,
-            type: 'item',
+            type: 'collapse',
             url: '/account/profile',
             icon: icons.IconUser,
-            breadcrumbs: false
-        },
-        {
-            id: 'billing',
-            title: <FormattedMessage id="Billing" />,
-            type: 'item',
-            url: '/account/billing',
-            icon: icons.IconCreditCard,
-            breadcrumbs: false
-        },
-        {
-            id: 'notifications',
-            title: <FormattedMessage id="Notifications" />,
-            type: 'item',
-            url: '/account/notifications',
-            icon: icons.IconBell,
-            breadcrumbs: false
+            children: [
+                {
+                    id: 'billing',
+                    title: <FormattedMessage id="Billing" />,
+                    type: 'item',
+                    url: '/account/billing',
+                    icon: icons.IconCreditCard,
+                    breadcrumbs: false
+                },
+                {
+                    id: 'notifications',
+                    title: <FormattedMessage id="Notifications" />,
+                    type: 'item',
+                    url: '/account/notifications',
+                    icon: icons.IconBell,
+                    breadcrumbs: false
+                }
+            ]
         },
         {
             id: 'settings',

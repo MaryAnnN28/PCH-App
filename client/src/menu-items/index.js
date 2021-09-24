@@ -8,7 +8,11 @@ import utilities from './utilities';
 import support from './support';
 import other from './other';
 import pchmenu from './pchmenu';
+import team from './team';
 import admin from './admin';
+import listings from './listings';
+import sales from './sales';
+import tools from './tools';
 
 // ===========================|| MENU ITEMS ||=========================== //
 
@@ -17,7 +21,7 @@ import admin from './admin';
 // };
 
 const menuItems = {
-    items: [pchmenu, admin]
+    items: [pchmenu, team, tools]
 };
 
 export default menuItems;
