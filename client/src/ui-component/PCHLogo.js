@@ -1,5 +1,6 @@
 import React from 'react';
 import PCHLogoFile from '../assets/images/PCH_logo_only.png';
+import PCHLogoWhite from '../assets/images/PCH_logo_white.png';
 
 // material-ui
 import { useTheme } from '@material-ui/styles';
@@ -19,8 +20,7 @@ const PCHLogo = () => {
 
     return (
         //  * if you want to use image instead of svg uncomment following, and comment out <svg> element.
-
-        <img src={theme.palette.mode === 'dark' ? PCHLogoFile : PCHLogoFile} alt="PCH" width="85" />
+        <img src={theme.palette.mode === 'light' ? PCHLogoFile : PCHLogoWhite} alt="PCH" width="85" />
 
         //         <svg width="92" height="32" viewBox="0 0 92 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         //             <path

@@ -22,7 +22,8 @@ import {
 } from '@material-ui/core';
 
 // project imports
-import Logo from 'ui-component/Logo';
+import PCHLogo from 'ui-component/PCHLogo';
+import PCHLogoFull from 'ui-component/PCHLogoFull';
 
 // assets
 import { IconBook, IconCreditCard, IconDashboard, IconHome2 } from '@tabler/icons';
@@ -68,27 +69,39 @@ const AppBar = ({ ...others }) => {
                 <Container>
                     <Toolbar>
                         <Typography component="div" sx={{ flexGrow: 1, textAlign: 'left' }}>
-                            <Logo />
+                            <PCHLogoFull />
                         </Typography>
                         <Stack direction="row" sx={{ display: { xs: 'none', sm: 'block' } }} spacing={2}>
                             <Button color="inherit" component={Link} href="#">
                                 Home
                             </Button>
-                            <Button color="inherit" component={RouterLink} to="/login" target="_blank">
-                                Dashboard
+                            <Button color="inherit" component={RouterLink} to="/listings">
+                                Listings
                             </Button>
-                            <Button color="inherit" component={Link} href="https://codedthemes.gitbook.io/berry" target="_blank">
-                                Documentation
+                            <Button color="inherit" component={RouterLink} to="/purchase">
+                                Purchase
+                            </Button>
+                            <Button color="inherit" component={RouterLink} to="/refinance">
+                                Refinance
+                            </Button>
+                            <Button color="inherit" component={RouterLink} to="/refinance">
+                                Resources
+                            </Button>
+                            <Button color="inherit" component={RouterLink} to="/calculators">
+                                About PCH
+                            </Button>
+                            <Button color="inherit" component={RouterLink} to="/calculators">
+                                Contact
                             </Button>
                             <Button
-                                component={Link}
-                                href="https://material-ui.com/store/items/berry-react-material-admin/"
+                                component={RouterLink}
+                                to="/login"
                                 target="_blank"
                                 disableElevation
                                 variant="contained"
                                 color="secondary"
                             >
-                                Purchase Now
+                                Log In
                             </Button>
                         </Stack>
                         <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
