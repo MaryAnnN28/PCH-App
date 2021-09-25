@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
     drawerPaper: {
         width: drawerWidth,
-        background: theme.palette.background.default,
+        background: theme.palette.background.darkBackground,
         color: theme.palette.text.primary,
         borderRight: 'none',
         [theme.breakpoints.up('md')]: {

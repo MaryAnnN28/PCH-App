@@ -27,11 +27,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex'
     },
     appBar: {
-        backgroundColor: theme.palette.background.default
+        backgroundColor: theme.palette.background.primary
     },
     appBarWidth: {
         transition: theme.transitions.create('width'),
-        backgroundColor: theme.palette.background.default
+        backgroundColor: theme.palette.background.primary
     },
     content: {
         ...theme.typography.mainContent,
