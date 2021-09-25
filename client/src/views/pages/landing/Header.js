@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import { makeStyles, useTheme } from '@material-ui/styles';
-import { Box, Button, Container, Grid, Link, Typography } from '@material-ui/core';
+import { Box, Button, Card, Container, Grid, Link, Typography } from '@material-ui/core';
 
 // third party
 import { motion } from 'framer-motion';
@@ -148,7 +148,7 @@ const HeaderPage = () => {
                                                 variant="contained"
                                                 color="secondary"
                                             >
-                                                Live Preview
+                                                View Listings
                                             </Button>
                                         </AnimateButton>
                                     </Grid>
@@ -160,7 +160,7 @@ const HeaderPage = () => {
                                             size="large"
                                             variant="text"
                                         >
-                                            Purchase Now
+                                            Refinance
                                         </Button>
                                     </Grid>
                                 </Grid>
@@ -171,51 +171,52 @@ const HeaderPage = () => {
                 <Grid item xs={12} md={7} sx={{ display: { xs: 'none', md: 'flex' } }}>
                     <Box sx={{ position: 'relative', right: '630px', zIndex: -1 }}>
                         <img src={NewHomeDoor} alt="Berry" className={classes.headerMain} />
-                        {/* <Box
+                        <Box
                             sx={{
                                 position: 'absolute',
-                                top: '-110px',
+                                top: '500px',
                                 right: '-170px',
                                 width: '290px',
-                                animation: '10s slideY linear infinite'
-                            }}
-                        >
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{
-                                    type: 'spring',
-                                    stiffness: 150,
-                                    damping: 30,
-                                    delay: 0.2
-                                }}
-                            >
-                                <img src={widget1} alt="Berry" className={classes.headerImg} />
-                            </motion.div>
-                        </Box> */}
-                        {/* <Box
-                            sx={{
-                                position: 'absolute',
-                                bottom: '-90px',
-                                left: '300px',
-                                width: '280px',
                                 animation: '10s slideY linear infinite',
-                                animationDelay: '2s'
+                                zIndex: 999
                             }}
                         >
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{
-                                    type: 'spring',
-                                    stiffness: 150,
-                                    damping: 30,
-                                    delay: 0.4
-                                }}
-                            >
-                                <img src={widget2} alt="Berry" className={classes.headerImg} />
-                            </motion.div>
-                        </Box> */}
+                            {/* <motion.div
+                                  initial={{ opacity: 0, scale: 0 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{
+                                      type: 'spring',
+                                      stiffness: 150,
+                                      damping: 30,
+                                      delay: 0.2
+                                  }}
+                              >
+                                  <img src={widget1} alt="Berry" className={classes.headerImg} />
+                              </motion.div> */}
+                        </Box>
+                        {/* <Box
+                          sx={{
+                              position: 'absolute',
+                              bottom: '-90px',
+                              left: '300px',
+                              width: '280px',
+                              animation: '10s slideY linear infinite',
+                              animationDelay: '2s'
+                          }}
+                      >
+                          <motion.div
+                              initial={{ opacity: 0, scale: 0 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{
+                                  type: 'spring',
+                                  stiffness: 150,
+                                damping: 30,
+                                  delay: 0.4
+                              }}
+                          >
+                              <img src={widget2} alt="Berry" className={classes.headerImg} />
+                          </motion.div>
+                      </Box> */}
                     </Box>
                 </Grid>
             </Grid>

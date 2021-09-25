@@ -4,10 +4,10 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 // assets
-import { IconUsers, IconFiles, IconMessages, IconCalculator } from '@tabler/icons';
+import { FaCalculator } from 'react-icons/fa';
 
 // constant
-const icons = { IconUsers, IconFiles, IconMessages, IconCalculator };
+const icons = { FaCalculator };
 
 // ===========================|| DASHBOARD MENU ITEMS ||=========================== //
 
@@ -19,25 +19,9 @@ const tools = {
         {
             id: 'calculators',
             title: <FormattedMessage id="Calculators" />,
-            type: 'collapse',
-            url: '/tools/calculators',
-            icon: icons.IconCalculator,
-            children: [
-                {
-                    id: 'sales',
-                    title: <FormattedMessage id="Sales" />,
-                    type: 'item',
-                    url: '/reports/sales-report',
-                    breadcrumbs: false
-                },
-                {
-                    id: 'leads',
-                    title: <FormattedMessage id="Leads" />,
-                    type: 'item',
-                    url: '/reports/leads-report',
-                    breadcrumbs: false
-                }
-            ]
+            type: 'item',
+            url: '/calculators',
+            icon: icons.FaCalculator
         }
     ]
 };

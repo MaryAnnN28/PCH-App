@@ -4,10 +4,11 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 // assets
-import { IconUsers, IconFiles, IconMessages } from '@tabler/icons';
+import { IconFiles, IconMessages } from '@tabler/icons';
+import { RiTeamFill, RiChat4Fill } from 'react-icons/ri';
 
 // constant
-const icons = { IconUsers, IconFiles, IconMessages };
+const icons = { RiTeamFill, RiChat4Fill, IconFiles, IconMessages };
 
 // ===========================|| DASHBOARD MENU ITEMS ||=========================== //
 
@@ -20,8 +21,8 @@ const team = {
             id: 'loanOfficers',
             title: <FormattedMessage id="Loan Officers" />,
             type: 'item',
-            url: '/loan-officers',
-            icon: icons.IconUsers,
+            url: '/team',
+            icon: icons.RiTeamFill,
             breadcrumbs: false
         },
         {
@@ -29,7 +30,7 @@ const team = {
             title: <FormattedMessage id="Chat" />,
             type: 'item',
             url: '/chat',
-            icon: icons.IconMessages,
+            icon: icons.RiChat4Fill,
             breadcrumbs: false
         }
     ]

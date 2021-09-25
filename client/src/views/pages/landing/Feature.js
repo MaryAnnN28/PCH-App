@@ -15,6 +15,11 @@ import PaletteTwoToneIcon from '@material-ui/icons/PaletteTwoTone';
 import ReorderTwoToneIcon from '@material-ui/icons/ReorderTwoTone';
 import SpeedTwoToneIcon from '@material-ui/icons/SpeedTwoTone';
 
+import CalculateIcon from '@material-ui/icons/Calculate';
+import HouseIcon from '@material-ui/icons/House';
+
+import { FaPercentage } from 'react-icons/fa';
+
 // =============================|| LANDING - FEATURE PAGE ||============================= //
 
 const FeaturePage = () => {
@@ -59,15 +64,15 @@ const FeaturePage = () => {
                                                     background:
                                                         theme.palette.mode === 'dark'
                                                             ? theme.palette.dark[900]
-                                                            : theme.palette.primary.light,
-                                                    color: theme.palette.primary.main
+                                                            : theme.palette.secondary.light,
+                                                    color: theme.palette.secondary.main
                                                 }}
                                             >
-                                                <PaletteTwoToneIcon fontSize="large" />
+                                                <HouseIcon fontSize="large" />
                                             </Avatar>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Typography variant="h3">Beautiful User Interface</Typography>
+                                            <Typography variant="h3">Home Buyer</Typography>
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Typography variant="body2">
@@ -95,11 +100,11 @@ const FeaturePage = () => {
                                                     color: theme.palette.secondary.main
                                                 }}
                                             >
-                                                <ReorderTwoToneIcon fontSize="large" />
+                                                <CalculateIcon fontSize="large" />
                                             </Avatar>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Typography variant="h3">Modern Technology Stack</Typography>
+                                            <Typography variant="h3">Refinance</Typography>
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Typography variant="body2">
@@ -123,15 +128,15 @@ const FeaturePage = () => {
                                                     background:
                                                         theme.palette.mode === 'dark'
                                                             ? theme.palette.dark[900]
-                                                            : theme.palette.success.light,
-                                                    color: theme.palette.success.dark
+                                                            : theme.palette.secondary.light,
+                                                    color: theme.palette.secondary.main
                                                 }}
                                             >
-                                                <SpeedTwoToneIcon fontSize="large" />
+                                                <FaPercentage fontSize="large" />
                                             </Avatar>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Typography variant="h3">Performance Centric</Typography>
+                                            <Typography variant="h3">Rates</Typography>
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Typography variant="body2">

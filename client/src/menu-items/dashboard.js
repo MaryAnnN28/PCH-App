@@ -20,7 +20,7 @@ const dashboard = {
             id: 'default',
             title: <FormattedMessage id="default" />,
             type: 'item',
-            url: '/dashboard/default',
+            url: '/dashboard/main',
             icon: icons.IconDashboard,
             breadcrumbs: false
         },
@@ -28,7 +28,7 @@ const dashboard = {
             id: 'analytics',
             title: <FormattedMessage id="analytics" />,
             type: 'item',
-            url: '/dashboard/analytics',
+            url: '/analytics',
             icon: icons.IconDeviceAnalytics,
             breadcrumbs: false
         }

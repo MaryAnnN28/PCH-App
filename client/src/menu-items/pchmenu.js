@@ -5,6 +5,9 @@ import { FormattedMessage } from 'react-intl';
 
 // assets
 import { IconDashboard, IconDeviceAnalytics, IconReportAnalytics, IconHome, IconUsers } from '@tabler/icons';
+import { FaFunnelDollar, FaHome, FaChartLine } from 'react-icons/fa';
+import { MdDashboard, MdGroup } from 'react-icons/md';
+import { RiFolderChartFill, RiTeamFill } from 'react-icons/ri';
 
 // constant
 const icons = {
@@ -12,7 +15,13 @@ const icons = {
     IconDeviceAnalytics,
     IconReportAnalytics,
     IconHome,
-    IconUsers
+    IconUsers,
+    FaFunnelDollar,
+    MdDashboard,
+    FaChartLine,
+    FaHome,
+    MdGroup,
+    RiFolderChartFill
 };
 
 // ===========================|| DASHBOARD MENU ITEMS ||=========================== //
@@ -26,8 +35,8 @@ const dashboard = {
             id: 'dashboard',
             title: <FormattedMessage id="Dashboard" />,
             type: 'item',
-            url: '/dashboard/default',
-            icon: icons.IconDashboard,
+            url: '/dashboard',
+            icon: icons.MdDashboard,
             breadcrumbs: false
         },
         {
@@ -35,7 +44,7 @@ const dashboard = {
             title: <FormattedMessage id="analytics" />,
             type: 'item',
             url: '/analytics',
-            icon: icons.IconDeviceAnalytics,
+            icon: icons.FaChartLine,
             breadcrumbs: false
         },
         {
@@ -43,7 +52,7 @@ const dashboard = {
             title: <FormattedMessage id="Leads" />,
             type: 'item',
             url: '/leads',
-            icon: icons.IconHome,
+            icon: icons.FaFunnelDollar,
             breadcrumbs: false
         },
         {
@@ -51,7 +60,7 @@ const dashboard = {
             title: <FormattedMessage id="Listings" />,
             type: 'item',
             url: '/listings',
-            icon: icons.IconHome,
+            icon: icons.FaHome,
             breadcrumbs: false
         },
         {
@@ -59,7 +68,7 @@ const dashboard = {
             title: <FormattedMessage id="Clients" />,
             type: 'item',
             url: '/clients',
-            icon: icons.IconUsers,
+            icon: icons.MdGroup,
             breadcrumbs: false
         },
         {
@@ -67,20 +76,34 @@ const dashboard = {
             title: <FormattedMessage id="Reports" />,
             type: 'collapse',
             url: '/reports',
-            icon: icons.IconReportAnalytics,
+            icon: icons.RiFolderChartFill,
             children: [
+                {
+                    id: 'main',
+                    title: <FormattedMessage id="Main Reports" />,
+                    type: 'item',
+                    url: '/reports/main',
+                    breadcrumbs: false
+                },
                 {
                     id: 'sales',
                     title: <FormattedMessage id="Sales" />,
                     type: 'item',
-                    url: '/reports/sales-report',
+                    url: '/reports/sales',
                     breadcrumbs: false
                 },
                 {
                     id: 'leads',
                     title: <FormattedMessage id="Leads" />,
                     type: 'item',
-                    url: '/reports/leads-report',
+                    url: '/reports/leads',
+                    breadcrumbs: false
+                },
+                {
+                    id: 'loanOfficers',
+                    title: <FormattedMessage id="Loan Officers" />,
+                    type: 'item',
+                    url: '/reports/loanofficers',
                     breadcrumbs: false
                 }
             ]

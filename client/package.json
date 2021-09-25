@@ -58,6 +58,7 @@
         "react-google-recaptcha": "^2.1.0",
         "react-hook-form": "^6.15.5",
         "react-hook-form-resolvers": "^0.0.1",
+        "react-icons": "^4.2.0",
         "react-images": "^1.2.0-beta.6",
         "react-intersection-observer": "^8.32.0",
         "react-intl": "^5.14.0",

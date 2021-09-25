@@ -9,6 +9,17 @@ import AuthGuard from 'utils/route-guard/AuthGuard';
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 const DashboardAnalytics = Loadable(lazy(() => import('views/dashboard/Analytics')));
 
+const Leads = Loadable(lazy(() => import('views/dashboard/Leads')));
+const Listings = Loadable(lazy(() => import('views/dashboard/Listings')));
+const Clients = Loadable(lazy(() => import('views/dashboard/Clients')));
+const LeadsReports = Loadable(lazy(() => import('views/dashboard/Reports/LeadsReports')));
+const SalesReports = Loadable(lazy(() => import('views/dashboard/Reports/SalesReports')));
+const MainReports = Loadable(lazy(() => import('views/dashboard/Reports/MainReports')));
+const LoanOfficerReports = Loadable(lazy(() => import('views/dashboard/Reports/LoanOfficerReports')));
+const LoanOfficers = Loadable(lazy(() => import('views/dashboard/LoanOfficers')));
+const Chat = Loadable(lazy(() => import('views/dashboard/Chat')));
+const Calculators = Loadable(lazy(() => import('views/dashboard/Calculators')));
+
 // widget routing
 const WidgetStatistics = Loadable(lazy(() => import('views/widget/Statistics')));
 const WidgetData = Loadable(lazy(() => import('views/widget/Data')));
@@ -123,9 +134,6 @@ const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialI
 const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
 const UtilsAnimation = Loadable(lazy(() => import('views/utilities/Animation')));
 const UtilsGrid = Loadable(lazy(() => import('views/utilities/Grid')));
-
-// sample page routing
-const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
 // ===========================|| MAIN ROUTING ||=========================== //
 
@@ -485,17 +493,65 @@ const MainRoutes = {
         },
 
         {
-            path: '/sample-page',
-            element: <SamplePage />
+            path: '/dashboard',
+            element: <DashboardDefault />
         },
 
         {
-            path: '/dashboard/default',
-            element: <DashboardDefault />
-        },
-        {
-            path: '/dashboard/analytics',
+            path: '/analytics',
             element: <DashboardAnalytics />
+        },
+
+        {
+            path: '/leads',
+            element: <Leads />
+        },
+
+        {
+            path: '/listings',
+            element: <Listings />
+        },
+
+        {
+            path: '/clients',
+            element: <Clients />
+        },
+
+        {
+            path: '/reports',
+            children: [
+                {
+                    path: '/main',
+                    element: <MainReports />
+                },
+                {
+                    path: '/sales',
+                    element: <SalesReports />
+                },
+                {
+                    path: '/loanofficers',
+                    element: <LoanOfficerReports />
+                },
+                {
+                    path: '/leads',
+                    element: <LeadsReports />
+                }
+            ]
+        },
+
+        {
+            path: '/team',
+            element: <LoanOfficers />
+        },
+
+        {
+            path: '/chat',
+            element: <Chat />
+        },
+
+        {
+            path: '/calculators',
+            element: <Calculators />
         }
     ]
 };
