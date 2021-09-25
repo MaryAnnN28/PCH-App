@@ -32,9 +32,9 @@ const useStyles = makeStyles((theme) => ({
         background: theme.palette.mode === 'dark' ? theme.palette.dark.light : theme.palette.primary.light
     },
     headerMain: {
-        maxWidth: '100%',
+        maxWidth: '130%',
         borderRadius: '0px',
-        transform: 'scale(1.6)',
+        transform: 'scale(1.7)',
         transformOrigin: '0 50%'
     },
     headerImg: {
@@ -169,8 +169,8 @@ const HeaderPage = () => {
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={7} sx={{ display: { xs: 'none', md: 'flex' } }}>
-                    <Box sx={{ position: 'relative' }}>
-                        <img src={Home} alt="Berry" className={classes.headerMain} />
+                    <Box sx={{ position: 'relative', right: '630px', zIndex: -1 }}>
+                        <img src={NewHomeDoor} alt="Berry" className={classes.headerMain} />
                         {/* <Box
                             sx={{
                                 position: 'absolute',
