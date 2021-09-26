@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clients",
+  "info": {
+    "name": "Clients",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "FirstName": {
+      "type": "string"
+    },
+    "LastName": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "email"
+    },
+    "Address": {
+      "type": "string"
+    },
+    "City": {
+      "type": "string"
+    },
+    "State": {
+      "type": "string"
+    },
+    "Zip": {
+      "type": "string"
+    },
+    "BestContactTime": {
+      "type": "enumeration",
+      "enum": [
+        "morning",
+        "afternoon",
+        "evening"
+      ]
+    },
+    "PreferredMethod": {
+      "type": "enumeration",
+      "enum": [
+        "email",
+        "text",
+        "phone"
+      ]
+    },
+    "Comments": {
+      "type": "text"
+    },
+    "tags": {
+      "collection": "tags"
+    }
+  }
+}

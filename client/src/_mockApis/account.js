@@ -10,19 +10,26 @@ import config from 'config';
 const JWT_SECRET = config.jwt.secret;
 const JWT_EXPIRES_TIME = config.jwt.timeout;
 
+const nodeURL = process.env.REACT_APP_STRAPI_URL;
+
 const delay = (timeout) => new Promise((res) => setTimeout(res, timeout));
 
 const users = [
     {
         id: '5e86809283e28b96d2d38537',
-        email: 'info@codedthemes.com',
+        email: 'info@pch.com',
         password: '123456'
+    },
+    {
+        id: '5e86809283e28b96d2d38538',
+        email: 'admin@pch.com',
+        password: '12345678'
     }
 ];
 
 // ===========================|| MOCK SERVICES ||=========================== //
 
-services.onPost('/api/account/login').reply(async (request) => {
+services.onPost(`${nodeURL}/auth/local`).reply(async (request) => {
     try {
         await delay(500);
 
@@ -55,7 +62,7 @@ services.onPost('/api/account/login').reply(async (request) => {
     }
 });
 
-services.onGet('/api/account/me').reply((request) => {
+services.onGet(`${nodeURL}/auth/local`).reply((request) => {
     try {
         const { Authorization } = request.headers;
 

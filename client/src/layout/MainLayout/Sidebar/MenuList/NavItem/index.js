@@ -106,7 +106,7 @@ const NavItem = ({ item, level }) => {
             selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
             onClick={() => itemHandler(item.id)}
             target={itemTarget}
-            style={{ paddingLeft: `${level * 23}px` }}
+            style={{ paddingLeft: `${level * 15}px` }}
         >
             <ListItemIcon className={itemIconClass}>{itemIcon}</ListItemIcon>
             <ListItemText

@@ -12,6 +12,8 @@ import accountReducer from 'store/accountReducer';
 import axios from 'utils/axios';
 import Loader from 'ui-component/Loader';
 
+const nodeURL = process.env.REACT_APP_STRAPI_URL;
+
 // constant
 const initialState = {
     isLoggedIn: false,
@@ -49,7 +51,7 @@ export const JWTProvider = ({ children }) => {
     const [state, dispatch] = useReducer(accountReducer, initialState);
 
     const login = async (email, password) => {
-        const response = await axios.post('/api/account/login', { email, password });
+        const response = await axios.post(`${nodeURL}/auth/local`, { identifier: email, password });
         const { serviceToken, user } = response.data;
         setSession(serviceToken);
         dispatch({
@@ -71,7 +73,7 @@ export const JWTProvider = ({ children }) => {
                 const serviceToken = window.localStorage.getItem('serviceToken');
                 if (serviceToken && verifyToken(serviceToken)) {
                     setSession(serviceToken);
-                    const response = await axios.get('/api/account/me');
+                    const response = await axios.get(`${nodeURL}/auth/local`);
                     const { user } = response.data;
                     dispatch({
                         type: ACCOUNT_INITIALIZE,

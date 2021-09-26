@@ -10,7 +10,8 @@ import AuthWrapper1 from '../AuthWrapper1';
 import Logo from 'ui-component/Logo';
 import PCHLogo from 'assets/images/PCH_logo_only.png';
 import AuthCardWrapper from '../AuthCardWrapper';
-import FirebaseLogin from './FirebaseLogin';
+// import FirebaseLogin from './FirebaseLogin';
+import JWTLogin from './JWTLogin';
 import AuthFooter from 'ui-component/cards/AuthFooter';
 
 // ================================|| LOGIN MAIN ||================================ //
@@ -28,7 +29,7 @@ const Login = () => {
                             <AuthCardWrapper>
                                 <Grid container spacing={2} alignItems="center" justifyContent="center">
                                     <Grid item sx={{ mb: 3 }}>
-                                        <RouterLink to="#">
+                                        <RouterLink to="/">
                                             {/* <Logo /> */}
                                             <img src={PCHLogo} alt="pch logo" width="100px" />
                                         </RouterLink>
@@ -57,7 +58,8 @@ const Login = () => {
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <FirebaseLogin />
+                                        {/* <FirebaseLogin /> */}
+                                        <JWTLogin />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Divider />

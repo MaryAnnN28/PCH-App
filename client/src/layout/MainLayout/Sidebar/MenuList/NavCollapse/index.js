@@ -121,7 +121,7 @@ const NavCollapse = ({ menu, level }) => {
                 sx={{ borderRadius: `${customization.borderRadius}px` }}
                 selected={selected === menu.id}
                 onClick={handleClick}
-                style={{ paddingLeft: `${level * 23}px` }}
+                style={{ paddingLeft: `${level * 15}px` }}
             >
                 <ListItemIcon className={menuIconClass}>{menuIcon}</ListItemIcon>
                 <ListItemText
