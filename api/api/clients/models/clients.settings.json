@@ -1,0 +1,71 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clients",
+  "info": {
+    "name": "Clients",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "clientType": {
+      "type": "enumeration",
+      "enum": [
+        "buyer",
+        "seller"
+      ]
+    },
+    "preferredContactMethod": {
+      "type": "enumeration",
+      "enum": [
+        "Email",
+        "Phone",
+        "Text"
+      ]
+    },
+    "Address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "source": {
+      "type": "enumeration",
+      "enum": [
+        "website",
+        "google",
+        "advertising",
+        "listings",
+        "referral",
+        "other"
+      ]
+    },
+    "users_permissions_user": {
+      "via": "clients",
+      "plugin": "users-permissions",
+      "model": "user"
+    }
+  }
+}
