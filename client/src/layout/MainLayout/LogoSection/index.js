@@ -7,12 +7,13 @@ import { ButtonBase } from '@material-ui/core';
 // project imports
 import config from 'config';
 import PCHLogo from 'ui-component/PCHLogo';
+import PCHlogowhite from 'assets/images/PCH_logo_white.png';
 
 // ===========================|| MAIN LOGO ||=========================== //
 
 const LogoSection = () => (
     <ButtonBase disableRipple component={Link} to={config.defaultPath}>
-        <PCHLogo />
+        <img src={PCHlogowhite} alt="PCH white logo" width="82" />
     </ButtonBase>
 );
 

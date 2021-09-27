@@ -21,7 +21,7 @@ const team = {
             id: 'loanOfficers',
             title: <FormattedMessage id="Loan Officers" />,
             type: 'item',
-            url: '/team',
+            url: '/dashboard/team',
             icon: icons.RiTeamFill,
             breadcrumbs: false
         },
@@ -29,7 +29,7 @@ const team = {
             id: 'chat',
             title: <FormattedMessage id="Chat" />,
             type: 'item',
-            url: '/chat',
+            url: '/dashboard/chat',
             icon: icons.RiChat4Fill,
             breadcrumbs: false
         }

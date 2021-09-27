@@ -100,7 +100,7 @@ const MainLayout = () => {
             <AppBar
                 enableColorOnDark
                 position="fixed"
-                color="inherit"
+                color="secondary"
                 elevation={0}
                 className={leftDrawerOpened ? classes.appBarWidth : classes.appBar}
             >

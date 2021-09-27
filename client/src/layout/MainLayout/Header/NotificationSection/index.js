@@ -14,6 +14,7 @@ import {
     ClickAwayListener,
     Divider,
     Grid,
+    IconButton,
     Paper,
     Popper,
     Stack,
@@ -142,6 +143,7 @@ const NotificationSection = () => {
         <>
             <Box component="span" className={classes.box}>
                 <ButtonBase sx={{ borderRadius: '12px' }}>
+                    {/* <IconButton> */}
                     <Avatar
                         variant="rounded"
                         className={classes.headerAvatar}
@@ -151,8 +153,9 @@ const NotificationSection = () => {
                         onClick={handleToggle}
                         color="inherit"
                     >
-                        <IconBell stroke={1.5} size="1.3rem" />
+                        <IconBell stroke={1.5} size="1.7rem" />
                     </Avatar>
+                    {/* </IconButton> */}
                 </ButtonBase>
             </Box>
             <Popper

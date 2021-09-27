@@ -43,7 +43,7 @@ const dashboard = {
             id: 'analytics',
             title: <FormattedMessage id="analytics" />,
             type: 'item',
-            url: '/analytics',
+            url: '/dashboard/analytics',
             icon: icons.FaChartLine,
             breadcrumbs: false
         },
@@ -51,7 +51,7 @@ const dashboard = {
             id: 'leads',
             title: <FormattedMessage id="Leads" />,
             type: 'item',
-            url: '/leads',
+            url: '/dashboard/leads',
             icon: icons.FaFunnelDollar,
             breadcrumbs: false
         },
@@ -59,7 +59,7 @@ const dashboard = {
             id: 'listings',
             title: <FormattedMessage id="Listings" />,
             type: 'item',
-            url: '/listings',
+            url: '/dashboard/listings',
             icon: icons.FaHome,
             breadcrumbs: false
         },
@@ -67,7 +67,7 @@ const dashboard = {
             id: 'clients',
             title: <FormattedMessage id="Clients" />,
             type: 'item',
-            url: '/clients',
+            url: '/dashboard/clients',
             icon: icons.MdGroup,
             breadcrumbs: false
         },
@@ -75,35 +75,35 @@ const dashboard = {
             id: 'reports',
             title: <FormattedMessage id="Reports" />,
             type: 'collapse',
-            url: '/reports',
+            url: '/dashboard/reports',
             icon: icons.RiFolderChartFill,
             children: [
                 {
                     id: 'main',
                     title: <FormattedMessage id="Main Reports" />,
                     type: 'item',
-                    url: '/reports/main',
+                    url: '/dashboard/reports/main',
                     breadcrumbs: false
                 },
                 {
                     id: 'sales',
                     title: <FormattedMessage id="Sales" />,
                     type: 'item',
-                    url: '/reports/sales',
+                    url: '/dashboard/reports/sales',
                     breadcrumbs: false
                 },
                 {
                     id: 'leads',
                     title: <FormattedMessage id="Leads" />,
                     type: 'item',
-                    url: '/reports/leads',
+                    url: '/dashboard/reports/leads',
                     breadcrumbs: false
                 },
                 {
                     id: 'loanOfficers',
                     title: <FormattedMessage id="Loan Officers" />,
                     type: 'item',
-                    url: '/reports/loanofficers',
+                    url: '/dashboard/reports/loanofficers',
                     breadcrumbs: false
                 }
             ]

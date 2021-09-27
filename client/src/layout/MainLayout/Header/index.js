@@ -50,7 +50,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
         <>
             {/* logo & toggler button */}
             <div className={classes.boxContainer}>
-                <Box component="span" sx={{ display: { xs: 'none', md: 'block', textAlign: 'center' }, flexGrow: 1 }}>
+                <Box component="span" sx={{ pl: 1, display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
                     <LogoSection />
                 </Box>
                 <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
@@ -61,8 +61,8 @@ const Header = ({ handleLeftDrawerToggle }) => {
             </div>
 
             {/* header search */}
-            <SearchSection theme="light" />
             <div className={classes.grow} />
+            <SearchSection theme="light" />
             <div className={classes.grow} />
 
             {/* live customization & localization */}

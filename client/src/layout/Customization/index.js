@@ -215,11 +215,11 @@ const Customization = () => {
                         boxShadow: theme.customShadows.secondary
                     }}
                 >
-                    <AnimateButton type="rotate">
-                        <IconButton color="inherit" size="large" disableRipple>
-                            <IconSettings />
-                        </IconButton>
-                    </AnimateButton>
+                    {/* <AnimateButton type="rotate"> */}
+                    <IconButton color="inherit" size="large" disableRipple>
+                        <IconSettings />
+                    </IconButton>
+                    {/* </AnimateButton> */}
                 </Fab>
             </Tooltip>
 

@@ -25,11 +25,11 @@ const useStyles = makeStyles((theme) => ({
     },
     drawerPaper: {
         width: drawerWidth,
-        background: theme.palette.background.darkBackground,
-        color: theme.palette.text.primary,
+        background: theme.palette.background.default,
+        color: theme.palette.primary.main,
         borderRight: 'none',
         [theme.breakpoints.up('md')]: {
-            top: '88px'
+            top: '101px'
         }
     },
     ScrollHeight: {
@@ -92,7 +92,8 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
                     paper: classes.drawerPaper
                 }}
                 ModalProps={{ keepMounted: true }}
-                color="inherit"
+                backgroundColor="secondary"
+                color="primary"
             >
                 {drawer}
             </Drawer>

@@ -12,6 +12,7 @@ const DashboardAnalytics = Loadable(lazy(() => import('views/dashboard/Analytics
 const Leads = Loadable(lazy(() => import('views/dashboard/Leads')));
 const Listings = Loadable(lazy(() => import('views/dashboard/Listings')));
 const Clients = Loadable(lazy(() => import('views/dashboard/Clients')));
+const ClientCreateView = Loadable(lazy(() => import('views/dashboard/Clients/CreateView')));
 const LeadsReports = Loadable(lazy(() => import('views/dashboard/Reports/LeadsReports')));
 const SalesReports = Loadable(lazy(() => import('views/dashboard/Reports/SalesReports')));
 const MainReports = Loadable(lazy(() => import('views/dashboard/Reports/MainReports')));
@@ -137,14 +138,92 @@ const UtilsGrid = Loadable(lazy(() => import('views/utilities/Grid')));
 
 // ===========================|| MAIN ROUTING ||=========================== //
 
+// to add auth back...replace with below before children prop
+//  element: (
+// <AuthGuard>
+//         <MainLayout />
+//     </AuthGuard>
+// ),
+
 const MainRoutes = {
     path: '/',
-    element: (
-        <AuthGuard>
-            <MainLayout />
-        </AuthGuard>
-    ),
+    element: <MainLayout />,
     children: [
+        {
+            path: 'dashboard',
+            children: [
+                {
+                    path: '/',
+                    element: <DashboardDefault />
+                },
+                {
+                    path: 'analytics',
+                    element: <DashboardAnalytics />
+                },
+
+                {
+                    path: 'leads',
+                    element: <Leads />
+                },
+
+                {
+                    path: 'listings',
+                    element: <Listings />
+                },
+
+                {
+                    path: 'clients',
+                    children: [
+                        {
+                            path: '/',
+                            element: <Clients />
+                        },
+                        {
+                            path: 'new',
+                            element: <ClientCreateView />
+                        }
+                    ]
+                },
+
+                {
+                    path: 'reports',
+                    children: [
+                        {
+                            path: 'main',
+                            element: <MainReports />
+                        },
+                        {
+                            path: 'sales',
+                            element: <SalesReports />
+                        },
+                        {
+                            path: 'loanofficers',
+                            element: <LoanOfficerReports />
+                        },
+                        {
+                            path: 'leads',
+                            element: <LeadsReports />
+                        }
+                    ]
+                },
+
+                {
+                    path: 'team',
+                    element: <LoanOfficers />
+                },
+
+                {
+                    path: 'chat',
+                    element: <Chat />
+                },
+
+                {
+                    path: 'calculators',
+                    element: <Calculators />
+                }
+            ]
+        },
+
         {
             path: '/widget/statistics',
             element: <WidgetStatistics />
@@ -490,68 +569,6 @@ const MainRoutes = {
         {
             path: '/utils/util-grid',
             element: <UtilsGrid />
-        },
-
-        {
-            path: '/dashboard',
-            element: <DashboardDefault />
-        },
-
-        {
-            path: '/analytics',
-            element: <DashboardAnalytics />
-        },
-
-        {
-            path: '/leads',
-            element: <Leads />
-        },
-
-        {
-            path: '/listings',
-            element: <Listings />
-        },
-
-        {
-            path: '/clients',
-            element: <Clients />
-        },
-
-        {
-            path: '/reports',
-            children: [
-                {
-                    path: '/main',
-                    element: <MainReports />
-                },
-                {
-                    path: '/sales',
-                    element: <SalesReports />
-                },
-                {
-                    path: '/loanofficers',
-                    element: <LoanOfficerReports />
-                },
-                {
-                    path: '/leads',
-                    element: <LeadsReports />
-                }
-            ]
-        },
-
-        {
-            path: '/team',
-            element: <LoanOfficers />
-        },
-
-        {
-            path: '/chat',
-            element: <Chat />
-        },
-
-        {
-            path: '/calculators',
-            element: <Calculators />
         }
     ]
 };

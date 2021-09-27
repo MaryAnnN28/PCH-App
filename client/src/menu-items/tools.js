@@ -20,7 +20,7 @@ const tools = {
             id: 'calculators',
             title: <FormattedMessage id="Calculators" />,
             type: 'item',
-            url: '/calculators',
+            url: '/dashboard/calculators',
             icon: icons.FaCalculator
         }
     ]
