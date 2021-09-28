@@ -139,8 +139,8 @@ const UtilsGrid = Loadable(lazy(() => import('views/utilities/Grid')));
 // ===========================|| MAIN ROUTING ||=========================== //
 
 // to add auth back...replace with below before children prop
-//  element: (
-// <AuthGuard>
+// element: (
+//     <AuthGuard>
 //         <MainLayout />
 //     </AuthGuard>
 // ),

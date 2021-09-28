@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "listings",
+  "info": {
+    "name": "listings",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "price": {
+      "type": "string"
+    },
+    "bedroom": {
+      "type": "biginteger"
+    },
+    "bath": {
+      "type": "biginteger"
+    },
+    "sqFt": {
+      "type": "biginteger"
+    },
+    "i_18_n_locale": {
+      "plugin": "i18n",
+      "model": "locale"
+    }
+  }
+}
