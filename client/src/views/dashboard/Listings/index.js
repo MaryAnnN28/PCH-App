@@ -8,7 +8,7 @@ const Listings = () => {
     return (
         <div>
             <Helmet>
-                <title>PCH Dashboard | Listings </title>
+                <title>PCH Dash - Listings </title>
             </Helmet>
             <h1>Listings Page</h1>
             <div>

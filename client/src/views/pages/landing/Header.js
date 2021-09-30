@@ -142,7 +142,7 @@ const HeaderPage = () => {
                                         <AnimateButton>
                                             <Button
                                                 component={RouterLink}
-                                                to="/dashboard/default"
+                                                to="/listings"
                                                 target="_blank"
                                                 size="large"
                                                 variant="contained"
@@ -153,13 +153,7 @@ const HeaderPage = () => {
                                         </AnimateButton>
                                     </Grid>
                                     <Grid item>
-                                        <Button
-                                            component={Link}
-                                            href="https://material-ui.com/store/items/berry-react-material-admin/"
-                                            target="_blank"
-                                            size="large"
-                                            variant="text"
-                                        >
+                                        <Button component={RouterLink} to="/refinance" target="_blank" size="large" variant="text">
                                             Refinance
                                         </Button>
                                     </Grid>

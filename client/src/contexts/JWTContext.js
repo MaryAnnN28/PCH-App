@@ -52,8 +52,9 @@ export const JWTProvider = ({ children }) => {
 
     const login = async (email, password) => {
         const response = await axios.post(`${nodeURL}/auth/local`, { identifier: email, password });
-        const { serviceToken, user } = response.data;
-        setSession(serviceToken);
+        const { jwt, user } = response.data;
+        console.log(jwt);
+        setSession(jwt, user);
         dispatch({
             type: LOGIN,
             payload: {

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Helmet from 'react-helmet';
 
 // material-ui
 import { Grid } from '@material-ui/core';
@@ -23,6 +24,9 @@ const Dashboard = () => {
 
     return (
         <Grid container spacing={gridSpacing}>
+            <Helmet>
+                <title>PCH Dashboard</title>
+            </Helmet>
             <Grid item xs={12}>
                 <Grid container spacing={gridSpacing}>
                     <Grid item lg={4} md={6} sm={6} xs={12}>

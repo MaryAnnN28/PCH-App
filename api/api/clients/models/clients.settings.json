@@ -66,6 +66,11 @@
       "via": "clients",
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "listings": {
+      "collection": "listings",
+      "via": "clients",
+      "dominant": true
     }
   }
 }

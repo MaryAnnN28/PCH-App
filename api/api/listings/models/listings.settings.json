@@ -54,6 +54,19 @@
     "i_18_n_locale": {
       "plugin": "i18n",
       "model": "locale"
+    },
+    "homeType": {
+      "type": "enumeration",
+      "enum": [
+        "Condo",
+        "Townhouse",
+        "House"
+      ],
+      "required": true
+    },
+    "clients": {
+      "via": "listings",
+      "collection": "clients"
     }
   }
 }

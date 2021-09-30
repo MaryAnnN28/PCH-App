@@ -4,7 +4,7 @@ import React, { lazy } from 'react';
 import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 import AuthGuard from 'utils/route-guard/AuthGuard';
-
+import GuestGuard from 'utils/route-guard/GuestGuard';
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 const DashboardAnalytics = Loadable(lazy(() => import('views/dashboard/Analytics')));
@@ -15,11 +15,15 @@ const Clients = Loadable(lazy(() => import('views/dashboard/Clients')));
 const ClientCreateView = Loadable(lazy(() => import('views/dashboard/Clients/CreateView')));
 const LeadsReports = Loadable(lazy(() => import('views/dashboard/Reports/LeadsReports')));
 const SalesReports = Loadable(lazy(() => import('views/dashboard/Reports/SalesReports')));
+const Reports = Loadable(lazy(() => import('views/dashboard/Reports')));
 const MainReports = Loadable(lazy(() => import('views/dashboard/Reports/MainReports')));
 const LoanOfficerReports = Loadable(lazy(() => import('views/dashboard/Reports/LoanOfficerReports')));
 const LoanOfficers = Loadable(lazy(() => import('views/dashboard/LoanOfficers')));
 const Chat = Loadable(lazy(() => import('views/dashboard/Chat')));
 const Calculators = Loadable(lazy(() => import('views/dashboard/Calculators')));
+
+// website pages routing
+const ListingsPage = Loadable(lazy(() => import('views/pages/listings')));
 
 // widget routing
 const WidgetStatistics = Loadable(lazy(() => import('views/widget/Statistics')));
@@ -188,6 +192,10 @@ const MainRoutes = {
                 {
                     path: 'reports',
                     children: [
+                        {
+                            path: '/',
+                            element: <Reports />
+                        },
                         {
                             path: 'main',
                             element: <MainReports />

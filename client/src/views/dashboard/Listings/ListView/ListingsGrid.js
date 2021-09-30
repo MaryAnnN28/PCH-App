@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Grid, Card, CardActions, CardContent, CardMedia, CardHeader, Chip, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import SubCard from 'ui-component/cards/SubCard';
 import Card1 from 'assets/images/cards/card-1.jpg';
 import { FaBed, FaBath } from 'react-icons/fa';
+import ListingCard from 'ui-component/cards/ListingCard';
 
 const nodeURL = process.env.REACT_APP_STRAPI_URL;
 
@@ -30,58 +30,25 @@ const ListingsGrid = ({ listings }) => {
 
     return (
         <>
-            <Grid container spacing={3} sx={{ p: 4 }}>
-                {listings.map((listing) => (
-                    <Grid item xs={12} sm={12} md={4} lg={4}>
-                        <Card className={classes.card} sx={{ boxShadow: 1 }}>
-                            <span className={classes.cityChip}>
-                                <Chip label={`${listing.city}, ${listing.state}`} color="primary" />
-                            </span>
-                            <CardMedia component="img" image={`${nodeURL}${listing.image?.url}`} title="Card 1" />
-                            <CardContent>
-                                <Grid container>
-                                    <Grid item md={4}>
-                                        <Typography variant="h4">${listing.price}</Typography>
-                                    </Grid>
-                                    <Grid item md={1}>
-                                        <Typography variant="h5" textAlign="right" sx={{ pr: 0.75 }}>
-                                            {listing.bedroom}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item md={1}>
-                                        <FaBed size="1.2rem" />
-                                    </Grid>
-                                    <Grid item md={1}>
-                                        <Typography variant="h5" textAlign="right" sx={{ pr: 0.75 }}>
-                                            {listing.bath}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item md={1}>
-                                        <FaBath size="1rem" />
-                                    </Grid>
-
-                                    <Grid item md={3}>
-                                        <Typography variant="h5" textAlign="right">
-                                            {listing.sqFt} sqft
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item md={12}>
-                                        <Typography variant="subtitle2">{listing.address}</Typography>
-                                    </Grid>
-                                    <Grid item md={3}>
-                                        <Typography variant="h5">{listing.city}</Typography>
-                                    </Grid>
-                                    <Grid item md={3}>
-                                        <Typography variant="h5">
-                                            {listing.state} {listing.zip}
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-                            </CardContent>
-                        </Card>
+            <Grid container spacing={5} sx={{ p: 3 }}>
+                {listings.map((listing, index) => (
+                    <Grid key={index} item xs={12} sm={12} md={4} lg={4}>
+                        <ListingCard
+                            id={listing.id}
+                            name={listing.name}
+                            image={listing.image}
+                            price={listing.price}
+                            bedroom={listing.bedroom}
+                            bath={listing.bath}
+                            sqFt={listing.sqFt}
+                            address={listing.address}
+                            city={listing.city}
+                            state={listing.state}
+                            zip={listing.zip}
+                            homeType={listing.homeType}
+                        />
                     </Grid>
                 ))}
-                ;
             </Grid>
         </>
     );

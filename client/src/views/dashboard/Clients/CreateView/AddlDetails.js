@@ -9,7 +9,7 @@ const validationSchema = yup.object({
     type: yup.string().required
 });
 
-const DetailsForm = ({ handleNext, handleBack, setErrorIndex, detailsData, setDetailsData }) => {
+const AddlDetails = ({ handleNext, handleBack, setErrorIndex, detailsData, setDetailsData }) => {
     const [client, setClient] = useState('');
 
     const formik = useFormik({
@@ -93,4 +93,4 @@ const DetailsForm = ({ handleNext, handleBack, setErrorIndex, detailsData, setDe
     );
 };
 
-export default DetailsForm;
+export default AddlDetails;

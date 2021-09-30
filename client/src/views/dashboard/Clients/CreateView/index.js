@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Box, Button, Grid, Step, Stepper, StepLabel, Stack, Typography } from '@material-ui/core';
+import { Box, Button, Dialog, Grid, Step, Stepper, StepLabel, Stack, Typography } from '@material-ui/core';
 
 import ContactForm from './ContactForm';
 import DetailsForm from './DetailsForm';
-import MainCard from 'ui-component/cards/MainCard';
+import AddlDetails from './AddlDetails';
+import { createClient } from '../../../../actions/clientActions';
 
-const steps = ['Contact information', 'Client details', 'Listing details'];
+const steps = ['Client Details', 'Address', 'Additional Info'];
 
 function getStepContent(step, handleNext, handleBack, setErrorIndex, contactData, setContactData, detailsData, setDetailsData) {
     switch (step) {
@@ -13,6 +14,7 @@ function getStepContent(step, handleNext, handleBack, setErrorIndex, contactData
             return (
                 <ContactForm
                     handleNext={handleNext}
+                    handleBack={handleBack}
                     setErrorIndex={setErrorIndex}
                     contactData={contactData}
                     setContactData={setContactData}
@@ -21,6 +23,16 @@ function getStepContent(step, handleNext, handleBack, setErrorIndex, contactData
         case 1:
             return (
                 <DetailsForm
+                    handleNext={handleNext}
+                    handleBack={handleBack}
+                    setErrorIndex={setErrorIndex}
+                    detailsData={detailsData}
+                    setDetailsData={setDetailsData}
+                />
+            );
+        case 2:
+            return (
+                <AddlDetails
                     handleNext={handleNext}
                     handleBack={handleBack}
                     setErrorIndex={setErrorIndex}
@@ -49,15 +61,10 @@ const ClientCreateView = () => {
     };
 
     return (
-        <Box sx={{ maxWidth: '100%', p: 4 }}>
-            <Grid container sx={{ mt: 2, mb: 4 }}>
-                <Grid item md={12} sx={{ mb: 4, pl: 2 }}>
-                    <Typography variant="h3" color="secondary">
-                        New Client Form
-                    </Typography>
-                </Grid>
-                <Grid item md={12}>
-                    <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+        <Box sx={{ maxWidth: '100%' }}>
+            <Grid container sx={{ mt: 2 }}>
+                <Grid item md={12} sx={{ px: 2 }}>
+                    <Stepper activeStep={activeStep} sx={{ pb: 4 }}>
                         {steps.map((label, index) => {
                             const labelProps = {};
 
@@ -100,12 +107,12 @@ const ClientCreateView = () => {
                                 {activeStep === steps.length - 1 && (
                                     <Stack direction="row" justifyContent={activeStep !== 0 ? 'space-between' : 'flex-end'}>
                                         {activeStep !== 0 && (
-                                            <Button onClick={handleBack} sx={{ my: 3, ml: 1 }}>
+                                            <Button onClick={handleBack} sx={{ my: 2, ml: 1 }}>
                                                 Back
                                             </Button>
                                         )}
 
-                                        <Button variant="contained" onClick={handleNext} sx={{ my: 3, ml: 1 }}>
+                                        <Button variant="contained" onClick={handleNext} sx={{ my: 2, ml: 1 }}>
                                             {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                                         </Button>
                                     </Stack>

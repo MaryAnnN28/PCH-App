@@ -92,33 +92,45 @@ function stableSort(array, comparator) {
 // table header options
 const headCells = [
     {
-        id: 'name',
+        id: 'firstName',
         numeric: false,
-        label: 'Customer Name',
+        label: 'First Name',
+        align: 'left'
+    },
+    {
+        id: 'lastName',
+        numeric: false,
+        label: 'Last Name',
+        align: 'left'
+    },
+    {
+        id: 'email',
+        numeric: false,
+        label: 'Email',
+        align: 'left'
+    },
+    {
+        id: 'phone',
+        numeric: false,
+        label: 'Phone',
         align: 'left'
     },
     {
         id: 'city',
-        numeric: false,
+        numeric: true,
         label: 'City',
-        align: 'left'
-    },
-    {
-        id: 'orders',
-        numeric: true,
-        label: 'Orders',
-        align: 'right'
-    },
-    {
-        id: 'date',
-        numeric: true,
-        label: 'Registered',
         align: 'center'
     },
     {
-        id: 'status',
+        id: 'state',
+        numeric: true,
+        label: 'State',
+        align: 'center'
+    },
+    {
+        id: 'clientType',
         numeric: false,
-        label: 'Status',
+        label: 'Type',
         align: 'center'
     }
 ];
@@ -258,7 +270,7 @@ EnhancedTableToolbar.propTypes = {
 
 // ===========================|| CUSTOMER LIST ||=========================== //
 
-const ClientList = () => {
+const ClientList = ({ clients }) => {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -268,7 +280,7 @@ const ClientList = () => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [search, setSearch] = React.useState('');
-    const [rows, setRows] = React.useState(rowsInitial);
+    const [rows, setRows] = React.useState(clients);
 
     const handleSearch = (event) => {
         const newString = event.target.value;
@@ -278,7 +290,7 @@ const ClientList = () => {
             const newRows = rows.filter((row) => {
                 let matches = true;
 
-                const properties = ['name', 'email', 'city', 'orders'];
+                const properties = ['firstName', 'lastName', 'email', 'phone', 'city', 'state', 'clientType'];
                 let containsQuery = false;
 
                 properties.forEach((property) => {
@@ -412,7 +424,7 @@ const ClientList = () => {
                                         key={index}
                                         selected={isItemSelected}
                                     >
-                                        <TableCell padding="checkbox" sx={{ pl: 3 }} onClick={(event) => handleClick(event, row.name)}>
+                                        <TableCell padding="checkbox" sx={{ pl: 3 }} onClick={(event) => handleClick(event, row.firstName)}>
                                             <Checkbox
                                                 color="primary"
                                                 checked={isItemSelected}
@@ -425,27 +437,30 @@ const ClientList = () => {
                                             component="th"
                                             id={labelId}
                                             scope="row"
-                                            onClick={(event) => handleClick(event, row.name)}
+                                            onClick={(event) => handleClick(event, row.firstName)}
                                             sx={{ cursor: 'pointer' }}
                                         >
                                             <Typography
                                                 variant="subtitle1"
                                                 sx={{ color: theme.palette.mode === 'dark' ? theme.palette.grey[600] : 'grey.900' }}
                                             >
-                                                {' '}
-                                                {row.name}{' '}
+                                                {row.firstName}
                                             </Typography>
-                                            <Typography variant="caption"> {row.email} </Typography>
                                         </TableCell>
+                                        <TableCell>
+                                            <Typography
+                                                variant="subtitle1"
+                                                sx={{ color: theme.palette.mode === 'dark' ? theme.palette.grey[600] : 'grey.900' }}
+                                            >
+                                                {row.lastName}
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell>{row.email}</TableCell>
+                                        <TableCell>{row.phone}</TableCell>
                                         <TableCell>{row.city}</TableCell>
-                                        <TableCell align="right">{row.orders}</TableCell>
-                                        <TableCell align="center">{row.date}</TableCell>
-                                        <TableCell align="center">
-                                            {row.status === 1 && <Chip label="In-Process" size="small" color="secondary" />}
-                                            {row.status === 2 && <Chip label="Prospect" size="small" color="warning" />}
-                                            {row.status === 3 && <Chip label="Active" size="small" color="success" />}
-                                        </TableCell>
-                                        <TableCell align="center" sx={{ pr: 3 }}>
+                                        <TableCell>{row.state}</TableCell>
+                                        <TableCell>{row.clientType}</TableCell>
+                                        <TableCell align="center" sx={{ pr: 2 }}>
                                             <IconButton color="primary">
                                                 <VisibilityTwoToneIcon sx={{ fontSize: '1.3rem' }} />
                                             </IconButton>

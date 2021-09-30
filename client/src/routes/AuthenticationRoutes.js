@@ -36,6 +36,7 @@ const MaintenanceUnderConstruction = Loadable(lazy(() => import('views/pages/mai
 
 // landing & contact-us routing
 const PagesLanding = Loadable(lazy(() => import('views/pages/landing')));
+const ListingsPage = Loadable(lazy(() => import('views/pages/listings')));
 const PagesContactUS = Loadable(lazy(() => import('views/pages/contact-us')));
 
 // ===========================|| AUTHENTICATION ROUTING ||=========================== //
@@ -44,6 +45,18 @@ const AuthenticationRoutes = {
     path: '/',
     element: <MinimalLayout />,
     children: [
+        {
+            path: '/',
+            element: <PagesLanding />
+        },
+        {
+            path: '/listings',
+            element: <ListingsPage />
+        },
+        {
+            path: '/contact-us',
+            element: <PagesContactUS />
+        },
         {
             path: '/pages/login/login1',
             element: <AuthLogin1 />
@@ -134,15 +147,6 @@ const AuthenticationRoutes = {
         {
             path: '/pages/under-construction',
             element: <MaintenanceUnderConstruction />
-        },
-
-        {
-            path: '/pages/landing',
-            element: <PagesLanding />
-        },
-        {
-            path: '/pages/contact-us',
-            element: <PagesContactUS />
         }
     ]
 };

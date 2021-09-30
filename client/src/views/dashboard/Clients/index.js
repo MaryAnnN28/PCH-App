@@ -3,9 +3,10 @@ import { useTheme } from '@material-ui/styles';
 import { useNavigate } from 'react-router';
 import { Box, Grid, Typography, Button, IconButton, ButtonBase, Avatar, Fab, Tooltip } from '@material-ui/core';
 import ClientList from './ListView/ClientList';
+import ClientListView from './ListView';
 import Add from '@material-ui/icons/Add';
-import AnimateButton from 'ui-component/extended/AnimateButton';
-import SpeedDialTooltipOpen from 'views/ui-elements/advance/UISpeeddial/SpeedDialTooltipOpen';
+import Helmet from 'react-helmet';
+import ClientFormDialog from '../../ui-elements/advance/UIDialog/ClientFormDialog';
 
 const Clients = () => {
     const theme = useTheme();
@@ -19,10 +20,13 @@ const Clients = () => {
 
     return (
         <>
-            <Tooltip title="Live Customize">
+            <Helmet>
+                <title>PCH Dash - Clients</title>
+            </Helmet>
+            <Tooltip title="Add Client">
                 <Fab
                     component="div"
-                    onClick={handleAddClick}
+                    // onClick={handleAddClick}
                     size="medium"
                     variant="string"
                     color="secondary"
@@ -35,15 +39,13 @@ const Clients = () => {
                         boxShadow: theme.customShadows.secondary
                     }}
                 >
-                    <IconButton color="inherit" size="large" disableRipple>
-                        <Add />
-                    </IconButton>
+                    <ClientFormDialog />
                 </Fab>
             </Tooltip>
-            <Box sx={{ maxWidth: '100%', p: 4 }}>
+            <Box sx={{ maxWidth: '100%', p: 2 }}>
                 <Grid container sx={{ mt: 8, mb: 4 }}>
                     <Grid item md={12}>
-                        <ClientList />
+                        <ClientListView />
                     </Grid>
                 </Grid>
             </Box>

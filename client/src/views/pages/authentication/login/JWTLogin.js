@@ -61,7 +61,7 @@ const JWTLogin = ({ loginIndex, ...others }) => {
         <Formik
             initialValues={{
                 email: 'test@test.com',
-                password: 'Test123!',
+                password: 'test123',
                 submit: null
             }}
             validationSchema={Yup.object().shape({
@@ -70,7 +70,12 @@ const JWTLogin = ({ loginIndex, ...others }) => {
             })}
             onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                 try {
-                    await login(values.email, values.password);
+                    const response = await login(values.email, values.password);
+                    if (response.status === 400) {
+                        setStatus({ success: false });
+                        setErrors({ submit: response.message });
+                        setSubmitting(false);
+                    }
 
                     if (scriptedRef.current) {
                         setStatus({ success: true });
