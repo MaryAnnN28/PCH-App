@@ -14,14 +14,14 @@ const validationSchema = yup.object({
 
 const ContactForm = ({ handleNext, handleBack, setErrorIndex, contactData, setContactData }) => {
     const [client, setClient] = useState('');
-    const [value, setValue] = useState('home');
+    const [value, setValue] = useState('');
 
     const formik = useFormik({
         initialValues: {
-            firstName: client.firstName || '',
-            lastName: client.lastName || '',
-            email: client.email || '',
-            phone: client.phone || ''
+            firstName: contactData.firstName || '',
+            lastName: contactData.lastName || '',
+            email: contactData.email || '',
+            phone: contactData.phone || ''
         },
         validationSchema,
         onSubmit: (values) => {
@@ -91,7 +91,7 @@ const ContactForm = ({ handleNext, handleBack, setErrorIndex, contactData, setCo
                                     id="demo-simple-select"
                                     value={formik.values.phoneType}
                                     label="Type"
-                                    onChange={handleChange}
+                                    onChange={(e) => formik.setFieldValue('phoneType', e.target.value)}
                                     autoComplete="phoneType"
                                 >
                                     <MenuItem value="mobile">Mobile</MenuItem>
@@ -139,7 +139,7 @@ const ContactForm = ({ handleNext, handleBack, setErrorIndex, contactData, setCo
                                     id="clientType"
                                     value={formik.values.clientType}
                                     label="Client Type"
-                                    onChange={handleChange}
+                                    onChange={(e) => formik.setFieldValue('clientType', e.target.value)}
                                     autoComplete="clientType"
                                 >
                                     <MenuItem value="buyer">Buyer</MenuItem>
@@ -157,7 +157,7 @@ const ContactForm = ({ handleNext, handleBack, setErrorIndex, contactData, setCo
                                     id="source"
                                     value={formik.values.source}
                                     label="Source"
-                                    onChange={handleChange}
+                                    onChange={(e) => formik.setFieldValue('source', e.target.value)}
                                     autoComplete="source"
                                     autoFocus
                                 >

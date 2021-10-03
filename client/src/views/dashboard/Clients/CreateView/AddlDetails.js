@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Checkbox, Grid, Typography, TextField, FormControlLabel, Stack } from '@material-ui/core';
+import { Box, Button, Checkbox, Grid, Typography, TextField, FormControl, InputLabel, Select, MenuItem, Stack } from '@material-ui/core';
 
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { useFormik } from 'formik';
@@ -9,17 +9,15 @@ const validationSchema = yup.object({
     type: yup.string().required
 });
 
-const AddlDetails = ({ handleNext, handleBack, setErrorIndex, detailsData, setDetailsData }) => {
-    const [client, setClient] = useState('');
-
+const AddlDetails = ({ handleNext, handleBack, setErrorIndex, extraData, setExtraData }) => {
     const formik = useFormik({
         initialValues: {
-            type: ''
+            bestContactTime: extraData.bestContactTime
         },
         validationSchema,
         onSubmit: (values) => {
-            setDetailsData({
-                type: values.type
+            setExtraData({
+                bestContactTime: values.bestContactTime
             });
             handleNext();
         }
@@ -30,30 +28,24 @@ const AddlDetails = ({ handleNext, handleBack, setErrorIndex, detailsData, setDe
             <Grid item>
                 <form onSubmit={formik.handleSubmit} id="validation-forms">
                     <Grid container spacing={3}>
-                        <Grid item xs={12} sm={12}>
-                            <TextField
-                                id="type"
-                                name="type"
-                                label="Type"
-                                defaultValue={formik.values.type}
-                                onChange={formik.handleChange}
-                                error={formik.touched.type && Boolean(formik.errors.stype)}
-                                helperText={formik.touched.type && formik.errors.type}
-                                fullWidth
-                                autoComplete="type"
-                            />
+                        <Grid item xs={6}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Best Time to Contact</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={formik.values.bestContactTime}
+                                    label="Best Contact Time"
+                                    onChange={(e) => formik.setFieldValue('bestContactTime', e.target.value)}
+                                    autoComplete="bestContactTime"
+                                >
+                                    <MenuItem value="morning">Morning</MenuItem>
+                                    <MenuItem value="afternoon">Afternoon</MenuItem>
+                                    <MenuItem value="evening">Evening</MenuItem>
+                                </Select>
+                            </FormControl>
                         </Grid>
-
-                        <Grid item xs={12}>
-                            <TextField
-                                id="address1"
-                                name="address1"
-                                label="Address line 1"
-                                fullWidth
-                                autoComplete="shipping address-line1"
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={6}>
                             <TextField
                                 id="address2"
                                 name="address2"
@@ -73,18 +65,6 @@ const AddlDetails = ({ handleNext, handleBack, setErrorIndex, detailsData, setDe
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField id="country" name="country" label="Country" fullWidth autoComplete="shipping country" />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Stack direction="row" justifyContent="space-between">
-                                <Button onClick={handleBack} sx={{ my: 2, ml: 1 }}>
-                                    Back
-                                </Button>
-                                <AnimateButton>
-                                    <Button variant="contained" type="submit" sx={{ my: 2, ml: 1 }} onClick={() => setErrorIndex(1)}>
-                                        Next
-                                    </Button>
-                                </AnimateButton>
-                            </Stack>
                         </Grid>
                     </Grid>
                 </form>

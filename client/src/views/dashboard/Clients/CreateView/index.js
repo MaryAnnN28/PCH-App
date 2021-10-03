@@ -1,18 +1,30 @@
 import React, { useState } from 'react';
 import { Box, Button, Dialog, Grid, Step, Stepper, StepLabel, Stack, Typography } from '@material-ui/core';
 
-import ContactForm from './ContactForm';
-import DetailsForm from './DetailsForm';
+import ContactInfo from './ContactInfo';
+import AddressForm from './AddressForm';
 import AddlDetails from './AddlDetails';
 import { createClient } from '../../../../actions/clientActions';
+import AnimateButton from 'ui-component/extended/AnimateButton';
 
 const steps = ['Client Details', 'Address', 'Additional Info'];
 
-function getStepContent(step, handleNext, handleBack, setErrorIndex, contactData, setContactData, detailsData, setDetailsData) {
+function getStepContent(
+    step,
+    handleNext,
+    handleBack,
+    setErrorIndex,
+    contactData,
+    setContactData,
+    addressData,
+    setAddressData,
+    extraData,
+    setExtraData
+) {
     switch (step) {
         case 0:
             return (
-                <ContactForm
+                <ContactInfo
                     handleNext={handleNext}
                     handleBack={handleBack}
                     setErrorIndex={setErrorIndex}
@@ -22,12 +34,12 @@ function getStepContent(step, handleNext, handleBack, setErrorIndex, contactData
             );
         case 1:
             return (
-                <DetailsForm
+                <AddressForm
                     handleNext={handleNext}
                     handleBack={handleBack}
                     setErrorIndex={setErrorIndex}
-                    detailsData={detailsData}
-                    setDetailsData={setDetailsData}
+                    addressData={addressData}
+                    setAddressData={setAddressData}
                 />
             );
         case 2:
@@ -36,8 +48,8 @@ function getStepContent(step, handleNext, handleBack, setErrorIndex, contactData
                     handleNext={handleNext}
                     handleBack={handleBack}
                     setErrorIndex={setErrorIndex}
-                    detailsData={detailsData}
-                    setDetailsData={setDetailsData}
+                    extraData={extraData}
+                    setExtraData={setExtraData}
                 />
             );
         default:
@@ -49,7 +61,8 @@ const ClientCreateView = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [errorIndex, setErrorIndex] = useState(null);
     const [contactData, setContactData] = useState({});
-    const [detailsData, setDetailsData] = useState({});
+    const [addressData, setAddressData] = useState({});
+    const [extraData, setExtraData] = useState({});
 
     const handleNext = () => {
         setActiveStep(activeStep + 1);
@@ -91,6 +104,23 @@ const ClientCreateView = () => {
                                 <Typography variant="h5" gutterBottom>
                                     Client saved
                                 </Typography>
+                                <Stack direction="row" justifyContent="flex-end">
+                                    <AnimateButton>
+                                        <Button
+                                            variant="contained"
+                                            color="error"
+                                            onClick={() => {
+                                                setContactData({});
+                                                setAddressData({});
+                                                setExtraData({});
+                                                setActiveStep(0);
+                                            }}
+                                            sx={{ my: 3, ml: 1 }}
+                                        >
+                                            Reset
+                                        </Button>
+                                    </AnimateButton>
+                                </Stack>
                             </>
                         ) : (
                             <>
@@ -101,8 +131,10 @@ const ClientCreateView = () => {
                                     setErrorIndex,
                                     contactData,
                                     setContactData,
-                                    detailsData,
-                                    setDetailsData
+                                    addressData,
+                                    setAddressData,
+                                    extraData,
+                                    setExtraData
                                 )}
                                 {activeStep === steps.length - 1 && (
                                     <Stack direction="row" justifyContent={activeStep !== 0 ? 'space-between' : 'flex-end'}>
@@ -113,7 +145,7 @@ const ClientCreateView = () => {
                                         )}
 
                                         <Button variant="contained" onClick={handleNext} sx={{ my: 2, ml: 1 }}>
-                                            {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                                            {activeStep === steps.length - 1 ? 'Add Client' : 'Next'}
                                         </Button>
                                     </Stack>
                                 )}
