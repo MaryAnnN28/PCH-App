@@ -40,30 +40,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import VisibilityTwoToneIcon from '@material-ui/icons/VisibilityTwoTone';
 import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
 
-// table data
-function createData(name, email, city, orders, date, status) {
-    return { name, email, city, orders, date, status };
-}
-
-const rowsInitial = [
-    createData('Joseph William 1', 'Joseph@mail.com', 'Washington, DC', 263, '12.07.2018', 1),
-    createData('Ashy Handgun 2', 'Akshay@mail.com', 'Vienna, VA', 750, '12.07.2018', 2),
-    createData('Larry Doe 3', 'larry@mail.com', 'Vallejo, CA', 1120, '12.07.2018', 2),
-    createData('Sara Soudan 4', 'Sara@mail.com', 'Fairfield, CA', 975, '12.07.2018', 3),
-    createData('Joseph William 5', 'Joseph@mail.com', 'San Diego, CA', 263, '12.07.2018', 1),
-    createData('Aisha Handgun 6', 'Akshay@mail.com', 'San Francisco, CA', 750, '12.07.2018', 3),
-    createData('Larky Doe 7', 'larry@mail.com', 'Vallejo, CA', 1120, '12.07.2018', 2),
-    createData('Sara Soupier 8', 'Sara@mail.com', 'New York, USA', 975, '12.07.2018', 1),
-    createData('Joseph William 9', 'Joseph@mail.com', 'Fairfield, CA', 263, '12.07.2018', 3),
-    createData('Anshan Handgun 10', 'Akshay@mail.com', 'New York, USA', 750, '12.07.2018', 1),
-    createData('Lardy Doe 11', 'larry@mail.com', 'Fairfield, CA', 1120, '12.07.2018', 1),
-    createData('Sara Soudan 12', 'Sara@mail.com', 'New York, USA', 975, '12.07.2018', 3),
-    createData('Joseph William 13', 'Joseph@mail.com', 'Fairfield, CA', 263, '12.07.2018', 2),
-    createData('Ashy Handgun 14', 'Akshay@mail.com', 'New York, USA', 750, '12.07.2018', 2),
-    createData('Lars Doe 15', 'larry@mail.com', 'Miami, FL', 1120, '12.07.2018', 1),
-    createData('Sara Souvenir 16', 'Sara@mail.com', 'Los Angeles, CA', 975, '12.07.2018', 2)
-];
-
 // table sort
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -275,7 +251,7 @@ const ClientList = ({ clients }) => {
     const theme = useTheme();
 
     const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('calories');
+    const [orderBy, setOrderBy] = React.useState('lastName');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -306,7 +282,7 @@ const ClientList = ({ clients }) => {
             });
             setRows(newRows);
         } else {
-            setRows(rowsInitial);
+            setRows(clients);
         }
     };
 
@@ -318,19 +294,19 @@ const ClientList = ({ clients }) => {
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelectedId = rows.map((n) => n.name);
+            const newSelectedId = rows.map((n) => n.lastName);
             setSelected(newSelectedId);
             return;
         }
         setSelected([]);
     };
 
-    const handleClick = (event, name) => {
-        const selectedIndex = selected.indexOf(name);
+    const handleClick = (event, lastName) => {
+        const selectedIndex = selected.indexOf(lastName);
         let newSelected = [];
 
         if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, name);
+            newSelected = newSelected.concat(selected, lastName);
         } else if (selectedIndex === 0) {
             newSelected = newSelected.concat(selected.slice(1));
         } else if (selectedIndex === selected.length - 1) {
@@ -351,9 +327,11 @@ const ClientList = ({ clients }) => {
         setPage(0);
     };
 
-    const isSelected = (name) => selected.indexOf(name) !== -1;
+    const isSelected = (lastName) => selected.indexOf(lastName) !== -1;
 
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
+    const handleCapitalize = (value) => value.replace(/\b(\w)/g, (s) => s.toUpperCase());
 
     return (
         <MainCard content={false}>
@@ -369,7 +347,7 @@ const ClientList = ({ clients }) => {
                                 )
                             }}
                             onChange={handleSearch}
-                            placeholder="Search Customer"
+                            placeholder="Search Client"
                             value={search}
                             size="small"
                             fullWidth
@@ -412,7 +390,7 @@ const ClientList = ({ clients }) => {
                         {stableSort(rows, getComparator(order, orderBy))
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row, index) => {
-                                const isItemSelected = isSelected(row.name);
+                                const isItemSelected = isSelected(row.lastName);
                                 const labelId = `enhanced-table-checkbox-${index}`;
 
                                 return (
@@ -424,7 +402,7 @@ const ClientList = ({ clients }) => {
                                         key={index}
                                         selected={isItemSelected}
                                     >
-                                        <TableCell padding="checkbox" sx={{ pl: 3 }} onClick={(event) => handleClick(event, row.firstName)}>
+                                        <TableCell padding="checkbox" sx={{ pl: 3 }} onClick={(event) => handleClick(event, row.lastName)}>
                                             <Checkbox
                                                 color="primary"
                                                 checked={isItemSelected}
@@ -437,14 +415,14 @@ const ClientList = ({ clients }) => {
                                             component="th"
                                             id={labelId}
                                             scope="row"
-                                            onClick={(event) => handleClick(event, row.firstName)}
+                                            onClick={(event) => handleClick(event, row.lastName)}
                                             sx={{ cursor: 'pointer' }}
                                         >
                                             <Typography
                                                 variant="subtitle1"
                                                 sx={{ color: theme.palette.mode === 'dark' ? theme.palette.grey[600] : 'grey.900' }}
                                             >
-                                                {row.firstName}
+                                                {handleCapitalize(row.firstName)}
                                             </Typography>
                                         </TableCell>
                                         <TableCell>
@@ -452,7 +430,7 @@ const ClientList = ({ clients }) => {
                                                 variant="subtitle1"
                                                 sx={{ color: theme.palette.mode === 'dark' ? theme.palette.grey[600] : 'grey.900' }}
                                             >
-                                                {row.lastName}
+                                                {handleCapitalize(row.lastName)}
                                             </Typography>
                                         </TableCell>
                                         <TableCell>{row.email}</TableCell>

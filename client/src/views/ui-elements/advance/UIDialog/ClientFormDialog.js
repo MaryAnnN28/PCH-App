@@ -18,7 +18,7 @@ import ClientCreateView from 'views/dashboard/Clients/CreateView';
 const styles = (theme) => ({
     root: {
         margin: 0,
-        padding: theme.spacing(2.5)
+        padding: theme.spacing(3)
     },
     closeButton: {
         position: 'absolute',
@@ -73,7 +73,7 @@ export default function ClientFormDialog() {
             <IconButton color="inherit" size="large" disableRipple onClick={handleClickOpen}>
                 <Add />
             </IconButton>
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} sx={{ '& .MuiDialog-paper': { pr: 0 } }}>
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} sx={{ '& .MuiDialog-paper': { pl: 1 } }}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     New Client Form
                 </DialogTitle>

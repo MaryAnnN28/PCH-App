@@ -14,40 +14,12 @@ const validationSchema = yup.object({
     state: yup.string().required('State is required')
 });
 
-const AddressForm = ({ handleNext, handleBack, setErrorIndex, addressData, setAddressData }) => {
-    const [client, setClient] = useState('');
+const AddressForm = ({ formik, clientId, clientData }) => {
     const [value, setValue] = useState('');
 
-    const formik = useFormik({
-        initialValues: {
-            address1: addressData.address1 || '',
-            address2: addressData.address2 || '',
-            city: addressData.city || '',
-            zip: addressData.zip || '',
-            state: addressData.state || '',
-            country: addressData.country || ''
-        },
-        validationSchema,
-        onSubmit: (values) => {
-            setAddressData({
-                address1: values.address1,
-                address2: values.address2,
-                city: values.city,
-                state: values.state,
-                zip: values.zip,
-                country: values.country
-            });
-            handleNext();
-        }
-    });
-
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    };
-
     return (
-        <Grid container md={12} sx={{ p: 1 }}>
-            <Grid item>
+        <Grid container sx={{ p: 1 }}>
+            <Grid item md={12}>
                 <form onSubmit={formik.handleSubmit} id="validation-forms">
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
@@ -137,18 +109,6 @@ const AddressForm = ({ handleNext, handleBack, setErrorIndex, addressData, setAd
                                     />
                                 )}
                             />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Stack direction="row" justifyContent="space-between">
-                                <Button onClick={handleBack} sx={{ my: 2, ml: 1 }}>
-                                    Back
-                                </Button>
-                                <AnimateButton>
-                                    <Button variant="contained" type="submit" sx={{ my: 2, ml: 1 }} onClick={() => setErrorIndex(1)}>
-                                        Next
-                                    </Button>
-                                </AnimateButton>
-                            </Stack>
                         </Grid>
                     </Grid>
                 </form>

@@ -28,7 +28,8 @@ export const fetchClient = async (id) => {
     return response;
 };
 
-export const createClient = async (id, details) => {
+// *********** CREATE CLIENT *********** //
+export const createClient = async (details) => {
     const opts = {
         method: 'POST',
         headers: headers(),
@@ -36,6 +37,31 @@ export const createClient = async (id, details) => {
     };
 
     const response = await fetch(`${nodeURL}/clients`, opts).then((data) => data.json());
+
+    return response;
+};
+
+// *********** UPDATE CLIENT *********** //
+export const updateClient = async (id, details) => {
+    const opts = {
+        method: 'PUT',
+        headers: headers(),
+        body: JSON.stringify(details)
+    };
+
+    const response = await fetch(`${nodeURL}/clients/${id}`, opts).then((data) => data.json());
+
+    return response;
+};
+
+// *********** DELETE CLIENT *********** //
+export const deleteClient = async (id) => {
+    const opts = {
+        method: 'DELETE',
+        headers: headers()
+    };
+
+    const response = await fetch(`${nodeURL}/clients/${id}`, opts).then((data) => data.json());
 
     return response;
 };

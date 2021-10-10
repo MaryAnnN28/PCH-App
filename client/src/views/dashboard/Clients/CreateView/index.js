@@ -1,70 +1,40 @@
 import React, { useState } from 'react';
 import { Box, Button, Dialog, Grid, Step, Stepper, StepLabel, Stack, Typography } from '@material-ui/core';
+import { useNavigate } from 'react-router';
 
 import ContactInfo from './ContactInfo';
 import AddressForm from './AddressForm';
-import AddlDetails from './AddlDetails';
+import ReviewClient from './ReviewClient';
+import ClientAdded from './ClientAdded';
 import { createClient } from '../../../../actions/clientActions';
-import AnimateButton from 'ui-component/extended/AnimateButton';
+import toast from 'react-hot-toast';
+import * as Yup from 'yup';
+import { Formik } from 'formik';
 
-const steps = ['Client Details', 'Address', 'Additional Info'];
-
-function getStepContent(
-    step,
-    handleNext,
-    handleBack,
-    setErrorIndex,
-    contactData,
-    setContactData,
-    addressData,
-    setAddressData,
-    extraData,
-    setExtraData
-) {
-    switch (step) {
-        case 0:
-            return (
-                <ContactInfo
-                    handleNext={handleNext}
-                    handleBack={handleBack}
-                    setErrorIndex={setErrorIndex}
-                    contactData={contactData}
-                    setContactData={setContactData}
-                />
-            );
-        case 1:
-            return (
-                <AddressForm
-                    handleNext={handleNext}
-                    handleBack={handleBack}
-                    setErrorIndex={setErrorIndex}
-                    addressData={addressData}
-                    setAddressData={setAddressData}
-                />
-            );
-        case 2:
-            return (
-                <AddlDetails
-                    handleNext={handleNext}
-                    handleBack={handleBack}
-                    setErrorIndex={setErrorIndex}
-                    extraData={extraData}
-                    setExtraData={setExtraData}
-                />
-            );
-        default:
-            throw new Error('Unknown step');
-    }
-}
+const steps = ['Client Details', 'Address Details', 'Review Client'];
 
 const ClientCreateView = () => {
+    const navigate = useNavigate();
     const [activeStep, setActiveStep] = useState(0);
+    const isLastStep = activeStep === steps.length - 1;
     const [errorIndex, setErrorIndex] = useState(null);
-    const [contactData, setContactData] = useState({});
-    const [addressData, setAddressData] = useState({});
-    const [extraData, setExtraData] = useState({});
+    const [clientData, setClientData] = useState(null);
+    const [clientId, setClientId] = useState(null);
 
-    const handleNext = () => {
+    const handleStepsContent = (step, formik) => {
+        switch (step) {
+            case 0:
+                return <ContactInfo clientData={clientData} clientId={clientId} formik={formik} />;
+            case 1:
+                return <AddressForm clientData={clientData} clientId={clientId} formik={formik} />;
+            case 2:
+                return <ReviewClient formik={formik} />;
+            default:
+                throw new Error('Unknown step');
+        }
+    };
+
+    const handleNext = async (values) => {
         setActiveStep(activeStep + 1);
         setErrorIndex(null);
     };
@@ -73,85 +43,114 @@ const ClientCreateView = () => {
         setActiveStep(activeStep - 1);
     };
 
+    const submitForm = (values, actions) => {
+        actions.setSubmitting(false);
+        setActiveStep(activeStep + 1);
+    };
+
+    const handleCreate = async (values) => {
+        const response = await createClient(values);
+        if (response.id) {
+            navigate(`/dashboard/clients/${response.id}`);
+            return 'Client created';
+        }
+        return 'Something went wrong';
+    };
+
     return (
         <Box sx={{ maxWidth: '100%' }}>
-            <Grid container sx={{ mt: 2 }}>
-                <Grid item md={12} sx={{ px: 2 }}>
-                    <Stepper activeStep={activeStep} sx={{ pb: 4 }}>
-                        {steps.map((label, index) => {
-                            const labelProps = {};
-
-                            if (index === errorIndex) {
-                                labelProps.optional = (
-                                    <Typography variant="caption" color="error">
-                                        Error
-                                    </Typography>
-                                );
-
-                                labelProps.error = true;
-                            }
-
-                            return (
-                                <Step key={label}>
-                                    <StepLabel {...labelProps}>{label}</StepLabel>
-                                </Step>
-                            );
-                        })}
+            <Grid container sx={{ mt: 1 }}>
+                <Grid item md={12} sx={{ px: 1 }}>
+                    <Stepper activeStep={activeStep} sx={{ pb: 5, px: 1 }}>
+                        {steps.map((label) => (
+                            <Step key={label}>
+                                <StepLabel>{label}</StepLabel>
+                            </Step>
+                        ))}
                     </Stepper>
-                    <>
-                        {activeStep === steps.length ? (
-                            <>
-                                <Typography variant="h5" gutterBottom>
-                                    Client saved
-                                </Typography>
-                                <Stack direction="row" justifyContent="flex-end">
-                                    <AnimateButton>
-                                        <Button
-                                            variant="contained"
-                                            color="error"
-                                            onClick={() => {
-                                                setContactData({});
-                                                setAddressData({});
-                                                setExtraData({});
-                                                setActiveStep(0);
-                                            }}
-                                            sx={{ my: 3, ml: 1 }}
-                                        >
-                                            Reset
-                                        </Button>
-                                    </AnimateButton>
-                                </Stack>
-                            </>
-                        ) : (
-                            <>
-                                {getStepContent(
-                                    activeStep,
-                                    handleNext,
-                                    handleBack,
-                                    setErrorIndex,
-                                    contactData,
-                                    setContactData,
-                                    addressData,
-                                    setAddressData,
-                                    extraData,
-                                    setExtraData
-                                )}
-                                {activeStep === steps.length - 1 && (
-                                    <Stack direction="row" justifyContent={activeStep !== 0 ? 'space-between' : 'flex-end'}>
+                    {activeStep === steps.length ? (
+                        <ClientAdded />
+                    ) : (
+                        <Formik
+                            enabledReinitialize
+                            initialValues={{
+                                firstName: '',
+                                lastName: '',
+                                email: '',
+                                phone: '',
+                                phoneType: '',
+                                contactMethod: '',
+                                clientType: '',
+                                source: '',
+                                address1: '',
+                                address2: '',
+                                city: '',
+                                state: '',
+                                zip: '',
+                                country: ''
+                            }}
+                            validationScheme={Yup.object().shape({
+                                firstName: Yup.string().required('First name is required'),
+                                lastName: Yup.string().required('Last name is required'),
+                                email: Yup.string().required('Email is required'),
+                                phone: Yup.string().required('Phone is required'),
+                                phoneType: Yup.string().required('Phone type is required'),
+                                clientType: Yup.string().required('Client type is required'),
+                                source: Yup.string().required('Source is required'),
+                                address1: Yup.string().required('Address is required'),
+                                city: Yup.string().required('City is required'),
+                                state: Yup.string().required('State is required'),
+                                zip: Yup.string().required('Zip is required')
+                            })}
+                            onSubmit={async (values, { resetForm, setErrors, setStatus, setSubmitting }) => {
+                                const response = await handleCreate(values);
+                                if (response === 'Client created') {
+                                    resetForm();
+                                    setStatus({ success: true });
+                                    setSubmitting(false);
+                                    toast.success('Client created');
+                                } else {
+                                    setSubmitting(false);
+                                    setStatus({ success: false });
+                                    setErrors({ submit: 'Something went wrong' });
+                                    toast.error('Something went wrong');
+                                }
+                            }}
+                        >
+                            {(formik) => (
+                                <form onSubmit={formik.handleSubmit}>
+                                    <Grid container spacing={1}>
+                                        {handleStepsContent(activeStep, formik)}
+                                    </Grid>
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                            justifyContent: 'flex-end',
+                                            px: 1,
+                                            pt: 4,
+                                            pb: 1
+                                        }}
+                                    >
                                         {activeStep !== 0 && (
-                                            <Button onClick={handleBack} sx={{ my: 2, ml: 1 }}>
-                                                Back
+                                            <Button sx={{ mr: 2, px: 4 }} variant="outlined" type="button" onClick={handleBack}>
+                                                BACK
                                             </Button>
                                         )}
-
-                                        <Button variant="contained" onClick={handleNext} sx={{ my: 2, ml: 1 }}>
-                                            {activeStep === steps.length - 1 ? 'Add Client' : 'Next'}
+                                        <Button
+                                            sx={{
+                                                px: 2
+                                            }}
+                                            type="submit"
+                                            variant="contained"
+                                            onClick={() => handleNext(formik.values)}
+                                        >
+                                            {isLastStep ? 'ADD CLIENT' : 'CONTINUE'}
                                         </Button>
-                                    </Stack>
-                                )}
-                            </>
-                        )}
-                    </>
+                                    </Box>
+                                </form>
+                            )}
+                        </Formik>
+                    )}
                 </Grid>
             </Grid>
         </Box>
