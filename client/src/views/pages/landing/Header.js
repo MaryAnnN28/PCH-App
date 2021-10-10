@@ -162,9 +162,9 @@ const HeaderPage = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={12} md={7} sx={{ display: { xs: 'none', md: 'flex' } }}>
-                    <Box sx={{ position: 'relative', right: '630px', zIndex: -1 }}>
-                        <img src={NewHomeDoor} alt="Berry" className={classes.headerMain} />
+                <Grid item md={7} sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ position: 'relative', zIndex: -1 }}>
+                        <img src={Home} alt="Berry" className={classes.headerMain} />
                         <Box
                             sx={{
                                 position: 'absolute',
