@@ -36,7 +36,7 @@ const ClientAdded = () => {
                 <Box
                     sx={{
                         display: 'flex',
-                        py: 4
+                        py: 2
                     }}
                 >
                     <Button color="button" variant="contained" sx={{ px: 4 }} onClick={handleClick}>

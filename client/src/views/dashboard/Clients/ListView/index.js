@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Box, Grid, Typography } from '@material-ui/core';
-import { fetchClients } from '../../../../actions/clientActions';
+import { fetchClients, deleteClient } from '../../../../actions/clientActions';
 import useScriptRef from 'hooks/useScriptRef';
 import ClientList from './ClientList';
+import useAuth from 'hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const ClientListView = () => {
     const scripted = useScriptRef();
+    const user = useAuth();
     const [clients, setClients] = useState([]);
 
     const getClients = useCallback(async () => {
@@ -21,7 +24,13 @@ const ClientListView = () => {
 
     useEffect(() => {
         getClients();
-    }, []);
+    }, [getClients]);
+
+    useEffect(() => {
+        if (user && user.clients) {
+            getClients();
+        }
+    }, [user, user.clients]);
 
     console.log(clients);
 

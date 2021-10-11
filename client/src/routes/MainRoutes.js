@@ -11,8 +11,11 @@ const DashboardAnalytics = Loadable(lazy(() => import('views/dashboard/Analytics
 
 const Leads = Loadable(lazy(() => import('views/dashboard/Leads')));
 const Listings = Loadable(lazy(() => import('views/dashboard/Listings')));
+
 const Clients = Loadable(lazy(() => import('views/dashboard/Clients')));
 const ClientCreateView = Loadable(lazy(() => import('views/dashboard/Clients/CreateView')));
+const ClientDetailsView = Loadable(lazy(() => import('views/dashboard/Clients/DetailsView')));
+
 const LeadsReports = Loadable(lazy(() => import('views/dashboard/Reports/LeadsReports')));
 const SalesReports = Loadable(lazy(() => import('views/dashboard/Reports/SalesReports')));
 const Reports = Loadable(lazy(() => import('views/dashboard/Reports')));
@@ -185,6 +188,10 @@ const MainRoutes = {
                         {
                             path: 'new',
                             element: <ClientCreateView />
+                        },
+                        {
+                            path: ':clientId',
+                            element: <ClientDetailsView />
                         }
                     ]
                 },

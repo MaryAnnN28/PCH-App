@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
+import { useLocation, useNavigate } from 'react-router';
 
 // material-ui
 import { makeStyles, useTheme } from '@material-ui/styles';
@@ -27,9 +28,11 @@ import { visuallyHidden } from '@material-ui/utils';
 
 // third-party
 import clsx from 'clsx';
+import toast from 'react-hot-toast';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
+import { deleteClient } from 'actions/clientActions';
 
 // assets
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -213,6 +216,16 @@ const EnhancedTableToolbar = (props) => {
     const classes = useToolbarStyles();
     const { numSelected } = props;
 
+    const handleDelete = async () => {
+        const response = await deleteClient();
+        if (response.id) {
+            toast.success('Client removed');
+            return 'Client removed';
+        }
+        toast.error('Something went wrong');
+        return 'Something went wrong';
+    };
+
     return (
         <Toolbar
             className={clsx(classes.root, {
@@ -225,13 +238,13 @@ const EnhancedTableToolbar = (props) => {
                 </Typography>
             ) : (
                 <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-                    Nutrition
+                    Clients
                 </Typography>
             )}
 
             {numSelected > 0 && (
                 <Tooltip title="Delete">
-                    <IconButton>
+                    <IconButton onClick={handleDelete}>
                         <DeleteIcon fontSize="small" />
                     </IconButton>
                 </Tooltip>
@@ -249,14 +262,18 @@ EnhancedTableToolbar.propTypes = {
 const ClientList = ({ clients }) => {
     const classes = useStyles();
     const theme = useTheme();
-
+    const navigate = useNavigate();
+    const location = useLocation();
     const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('lastName');
+    const [orderBy, setOrderBy] = React.useState('firstName');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [search, setSearch] = React.useState('');
     const [rows, setRows] = React.useState(clients);
+    const clientId = location.pathname.replace('/dashboard/clients/', '');
+
+    console.log(clientId);
 
     const handleSearch = (event) => {
         const newString = event.target.value;
@@ -286,10 +303,10 @@ const ClientList = ({ clients }) => {
         }
     };
 
-    const handleRequestSort = (event, property) => {
-        const isAsc = orderBy === property && order === 'asc';
+    const handleRequestSort = (event, lastName) => {
+        const isAsc = orderBy === lastName && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
+        setOrderBy(lastName);
     };
 
     const handleSelectAllClick = (event) => {
@@ -332,6 +349,10 @@ const ClientList = ({ clients }) => {
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
     const handleCapitalize = (value) => value.replace(/\b(\w)/g, (s) => s.toUpperCase());
+
+    const handleDetailsClick = () => {
+        navigate(`/dashboard/clients/${clientId}`);
+    };
 
     return (
         <MainCard content={false}>
@@ -439,7 +460,7 @@ const ClientList = ({ clients }) => {
                                         <TableCell>{row.state}</TableCell>
                                         <TableCell>{row.clientType}</TableCell>
                                         <TableCell align="center" sx={{ pr: 2 }}>
-                                            <IconButton color="primary">
+                                            <IconButton color="primary" onClick={handleDetailsClick}>
                                                 <VisibilityTwoToneIcon sx={{ fontSize: '1.3rem' }} />
                                             </IconButton>
                                             <IconButton color="secondary">

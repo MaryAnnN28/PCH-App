@@ -6,7 +6,7 @@ import ContactInfo from './ContactInfo';
 import AddressForm from './AddressForm';
 import ReviewClient from './ReviewClient';
 import ClientAdded from './ClientAdded';
-import { createClient } from '../../../../actions/clientActions';
+import { createClient, updateClient } from '../../../../actions/clientActions';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -18,15 +18,14 @@ const ClientCreateView = () => {
     const [activeStep, setActiveStep] = useState(0);
     const isLastStep = activeStep === steps.length - 1;
     const [errorIndex, setErrorIndex] = useState(null);
-    const [clientData, setClientData] = useState(null);
     const [clientId, setClientId] = useState(null);
 
     const handleStepsContent = (step, formik) => {
         switch (step) {
             case 0:
-                return <ContactInfo clientData={clientData} clientId={clientId} formik={formik} />;
+                return <ContactInfo clientId={clientId} formik={formik} />;
             case 1:
-                return <AddressForm clientData={clientData} clientId={clientId} formik={formik} />;
+                return <AddressForm clientId={clientId} formik={formik} />;
             case 2:
                 return <ReviewClient formik={formik} />;
             default:
@@ -48,10 +47,10 @@ const ClientCreateView = () => {
         setActiveStep(activeStep + 1);
     };
 
-    const handleCreate = async (values) => {
+    const handleCreate = async (values, id) => {
         const response = await createClient(values);
         if (response.id) {
-            navigate(`/dashboard/clients/${response.id}`);
+            navigate(`/dashboard/clients/${clientId}`);
             return 'Client created';
         }
         return 'Something went wrong';
@@ -104,6 +103,7 @@ const ClientCreateView = () => {
                             })}
                             onSubmit={async (values, { resetForm, setErrors, setStatus, setSubmitting }) => {
                                 const response = await handleCreate(values);
+                                console.log(response);
                                 if (response === 'Client created') {
                                     resetForm();
                                     setStatus({ success: true });

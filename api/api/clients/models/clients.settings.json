@@ -29,7 +29,8 @@
       "enum": [
         "buyer",
         "seller"
-      ]
+      ],
+      "required": true
     },
     "preferredContactMethod": {
       "type": "enumeration",
@@ -60,7 +61,8 @@
         "listings",
         "referral",
         "other"
-      ]
+      ],
+      "required": true
     },
     "users_permissions_user": {
       "via": "clients",

@@ -10,18 +10,13 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 90,
         fontWeight: 300,
         color: 'green',
-        marginTop: theme.spacing(8),
-        marginBottom: theme.spacing(5)
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(4)
     }
 }));
 
 const ReviewClient = ({ formik }) => {
     const classes = useStyles();
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        navigate(`/dashboard/clients`);
-    };
 
     return (
         <Grid container spacing={2} justifyContent="center">
