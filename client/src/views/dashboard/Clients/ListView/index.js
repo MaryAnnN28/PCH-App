@@ -26,13 +26,14 @@ const ClientListView = () => {
         getClients();
     }, [getClients]);
 
-    useEffect(() => {
-        if (user && user.clients) {
-            getClients();
-        }
-    }, [user, user.clients]);
+    // USE THIS BELOW ONCE AUTHENTICATION IS WORKING
+    // useEffect(() => {
+    //     if (user && user.clients) {
+    //         getClients();
+    //     }
+    // }, [user, user.clients]);
 
-    console.log(clients);
+    // console.log(clients);
 
     return (
         <>

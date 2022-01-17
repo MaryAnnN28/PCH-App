@@ -37,6 +37,9 @@ const MaintenanceUnderConstruction = Loadable(lazy(() => import('views/pages/mai
 // landing & contact-us routing
 const PagesLanding = Loadable(lazy(() => import('views/pages/landing')));
 const ListingsPage = Loadable(lazy(() => import('views/pages/listings')));
+const PurchasePage = Loadable(lazy(() => import('views/pages/purchase')));
+const RefinancePage = Loadable(lazy(() => import('views/pages/refinance')));
+const ResourcesPage = Loadable(lazy(() => import('views/pages/resources')));
 const PagesContactUS = Loadable(lazy(() => import('views/pages/contact-us')));
 
 // ===========================|| AUTHENTICATION ROUTING ||=========================== //
@@ -52,6 +55,18 @@ const AuthenticationRoutes = {
         {
             path: '/listings',
             element: <ListingsPage />
+        },
+        {
+            path: '/purchase',
+            element: <PurchasePage />
+        },
+        {
+            path: '/refinance',
+            element: <RefinancePage />
+        },
+        {
+            path: '/resources',
+            element: <ResourcesPage />
         },
         {
             path: '/contact-us',

@@ -27,6 +27,7 @@ const Calculators = Loadable(lazy(() => import('views/dashboard/Calculators')));
 
 // website pages routing
 const ListingsPage = Loadable(lazy(() => import('views/pages/listings')));
+const PurchasePage = Loadable(lazy(() => import('views/pages/purchase')));
 
 // widget routing
 const WidgetStatistics = Loadable(lazy(() => import('views/widget/Statistics')));
