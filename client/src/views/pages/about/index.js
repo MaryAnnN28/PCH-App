@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 
 // project imports
 
-import Header from './Header';
+import Header from '../landing/Header';
 
 import Footer from '../landing/Footer';
 
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 // =============================|| LANDING MAIN ||============================= //
 
-const ListingsPage = () => {
+const AboutPage = () => {
     const classes = useStyles();
 
     return (
@@ -41,11 +41,11 @@ const ListingsPage = () => {
                 <AppBar />
                 <Header />
             </div>
-            <div className={classes.sectionWhite}>This is the listings page</div>
+            <div className={classes.sectionWhite}>This is the about page</div>
             <Footer />
             <Customization />
         </>
     );
 };
 
-export default ListingsPage;
+export default AboutPage;

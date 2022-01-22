@@ -40,6 +40,7 @@ const ListingsPage = Loadable(lazy(() => import('views/pages/listings')));
 const PurchasePage = Loadable(lazy(() => import('views/pages/purchase')));
 const RefinancePage = Loadable(lazy(() => import('views/pages/refinance')));
 const ResourcesPage = Loadable(lazy(() => import('views/pages/resources')));
+const AboutPage = Loadable(lazy(() => import('views/pages/about')));
 const PagesContactUS = Loadable(lazy(() => import('views/pages/contact-us')));
 
 // ===========================|| AUTHENTICATION ROUTING ||=========================== //
@@ -69,8 +70,12 @@ const AuthenticationRoutes = {
             element: <ResourcesPage />
         },
         {
-            path: '/contact-us',
+            path: '/contact',
             element: <PagesContactUS />
+        },
+        {
+            path: '/about',
+            element: <AboutPage />
         },
         {
             path: '/pages/login/login1',

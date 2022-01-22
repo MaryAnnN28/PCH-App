@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/styles';
 import Header from './Header';
 import Feature from './Feature';
 import Demos from './Demos';
-import Layouts from './Layouts';
+
 import KeyFeature from './KeyFeature';
 import Subscribe from './Subscribe';
 import Footer from './Footer';
@@ -49,9 +49,6 @@ const Landing = () => {
             </div>
             <div className={classes.sectionWhite}>
                 <Demos />
-            </div>
-            <div className={classes.sectionWhite}>
-                <Layouts />
             </div>
             <div className={classes.sectionWhite}>
                 <KeyFeature />

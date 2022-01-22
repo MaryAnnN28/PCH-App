@@ -24,7 +24,7 @@ const ClientListView = () => {
 
     useEffect(() => {
         getClients();
-    }, [getClients]);
+    }, [clients]);
 
     // USE THIS BELOW ONCE AUTHENTICATION IS WORKING
     // useEffect(() => {

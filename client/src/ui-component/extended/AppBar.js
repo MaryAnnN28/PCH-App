@@ -84,13 +84,13 @@ const AppBar = ({ ...others }) => {
                             <Button color="inherit" component={RouterLink} to="/refinance">
                                 Refinance
                             </Button>
-                            <Button color="inherit" component={RouterLink} to="/refinance">
+                            <Button color="inherit" component={RouterLink} to="/resources">
                                 Resources
                             </Button>
-                            <Button color="inherit" component={RouterLink} to="/calculators">
+                            <Button color="inherit" component={RouterLink} to="/about">
                                 About PCH
                             </Button>
-                            <Button color="inherit" component={RouterLink} to="/calculators">
+                            <Button color="inherit" component={RouterLink} to="/contact">
                                 Contact
                             </Button>
                             <Button component={RouterLink} to="/login" disableElevation variant="contained" color="secondary">
